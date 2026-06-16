@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -28,6 +28,7 @@ max-width:1200px;
 margin:auto;
 }
 
+/* NAV */
 nav{
 position:sticky;
 top:0;
@@ -78,6 +79,7 @@ border-radius:8px;
 font-weight:600;
 }
 
+/* HERO */
 .hero{
 background:
 linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
@@ -118,6 +120,7 @@ border:2px solid white;
 background:transparent;
 }
 
+/* TRUST */
 .trust{
 padding:20px;
 background:#fafafa;
@@ -125,8 +128,10 @@ text-align:center;
 font-weight:600;
 }
 
+/* ABOUT (SOFT PINK UPDATED AREA) */
 .about{
 padding:80px 0;
+background:linear-gradient(180deg,#fff0f6,#ffffff);
 }
 
 .about-grid{
@@ -139,15 +144,18 @@ align-items:center;
 .about img{
 width:100%;
 border-radius:20px;
-border:8px solid gold;
+border:8px solid #f8c6dc;
+box-shadow:0 10px 25px rgba(214,51,132,.15);
 }
 
 .about h2{
 font-family:'Playfair Display',serif;
 font-size:42px;
 margin-bottom:20px;
+color:#b02a5b;
 }
 
+/* VIDEO */
 .video{
 padding:80px 0;
 background:#f8f8f8;
@@ -161,6 +169,7 @@ border:none;
 border-radius:20px;
 }
 
+/* FAITH */
 .faith{
 padding:80px 0;
 background:#000;
@@ -180,16 +189,10 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:25px;
 }
 
-.card{
-padding:30px;
-border-radius:20px;
-background:white;
-color:black;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
-}
-
+/* INSURANCE SOLUTIONS (PINK → DARK PINK → BLACK TRANSITION) */
 .solutions{
 padding:80px 0;
+background:#fff;
 }
 
 .solutions h2{
@@ -199,6 +202,34 @@ font-size:42px;
 margin-bottom:50px;
 }
 
+/* UPDATED CARDS */
+.solutions .card{
+padding:30px;
+border-radius:20px;
+background:linear-gradient(135deg,#ffe3ef,#ffd1e6);
+color:#111;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:all .4s ease;
+cursor:pointer;
+}
+
+.solutions .card:hover{
+background:linear-gradient(135deg,#d63384,#6a0d3a);
+color:#fff;
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* DEFAULT CARD (OTHER SECTIONS) */
+.card{
+padding:30px;
+border-radius:20px;
+background:white;
+color:black;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* NEWSLETTER */
 .newsletter{
 background:linear-gradient(135deg,#d63384,#000);
 color:white;
@@ -225,6 +256,7 @@ cursor:pointer;
 border-radius:8px;
 }
 
+/* CONTACT */
 .contact{
 padding:80px 20px;
 text-align:center;
@@ -236,6 +268,7 @@ font-size:42px;
 margin-bottom:20px;
 }
 
+/* FOOTER */
 .footer{
 background:#000;
 color:white;
@@ -243,6 +276,7 @@ text-align:center;
 padding:40px;
 }
 
+/* MOBILE */
 @media(max-width:768px){
 
 .hero h1{
