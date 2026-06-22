@@ -102,7 +102,7 @@ border:2px solid white;
 background:transparent;
 }
 
-/* === LEAD MAGNET MODAL STYLES === */
+/* LEAD MAGNET MODAL STYLES */
 .modal {
   display: none;
   position: fixed;
@@ -163,7 +163,7 @@ background:transparent;
   font-size: 15px;
 }
 
-/* REST OF YOUR STYLES (unchanged) */
+/* Rest of your styles */
 .trust{
 padding:20px;
 background:#fafafa;
@@ -421,12 +421,15 @@ FaithShield Insurance • Rhina Jasmyn<br>
 Independent Insurance Agent • Licensed with Symmetry
 </footer>
 
-<!-- LEAD MAGNET MODAL -->
+<!-- LEAD MAGNET MODAL - Stronger CTA -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">×</span>
-    <h2>Free Family Protection Guide</h2>
-    <p style="text-align:center; margin-bottom:25px;">Answer these honest questions and receive your guide instantly.</p>
+    <h2>Get Your Free Family Protection Guide</h2>
+    <p style="text-align:center; margin-bottom:25px; font-size:17px;">
+      <strong>Stop wondering "What if?"</strong><br>
+      Answer these important questions and receive immediate clarity + protection steps for your family.
+    </p>
     
     <form name="family-protection" method="POST" data-netlify="true" action="/thank-you">
       <input type="hidden" name="form-name" value="family-protection">
@@ -438,11 +441,11 @@ Independent Insurance Agent • Licensed with Symmetry
       <div class="question">Would your children (11 & 15) be fully covered and protected?</div>
       <div class="question">Would your family be forced to sell or change homes due to the mortgage?</div>
       
-      <button type="submit">Send Me The Free Guide Now</button>
+      <button type="submit">YES — Send Me The Guide Now</button>
     </form>
     
     <p style="font-size:13px; text-align:center; margin-top:20px; color:#777;">
-      Your information is safe • Faith-driven guidance only
+      Instant access • Your information is safe • No pressure, faith-driven help only
     </p>
   </div>
 </div>
