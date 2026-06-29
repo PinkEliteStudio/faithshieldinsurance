@@ -1,441 +1,446 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>FaithShield Insurance | Rhina Jasmyn</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
-font-family:'Inter',sans-serif;
-line-height:1.6;
-color:#333;
-overflow-x:hidden;
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
 }
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
-/* NAV */
-nav{
-position:sticky;
-top:0;
-background:#fff;
-padding:20px 0;
-border-bottom:1px solid #eee;
-z-index:1000;
+
+/* NAVIGATION */
+nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    z-index: 1000;
 }
-.nav-container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
-.logo{
-font-size:28px;
-font-weight:bold;
-font-family:'Playfair Display',serif;
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
 }
-.logo small{
-display:block;
-font-size:12px;
-color:#777;
+
+.logo small {
+    display: block;
+    font-size: 11px;
+    color: #777;
 }
-.nav-links{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
-.nav-links a{
-text-decoration:none;
-color:#333;
-font-weight:600;
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    padding: 8px 0;
 }
-.btn{
-display:inline-block;
-padding:14px 28px;
-background:#000;
-color:#fff;
-text-decoration:none;
-border-radius:8px;
-font-weight:600;
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px;
 }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 24px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+
 .book-btn {
-  background: #d63384;
-  color: white;
+    background: #d63384;
+    color: white;
 }
+
 /* HERO */
-.hero{
-background:
-linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
-url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
-background-size:cover;
-background-position:center;
-color:#fff;
-padding:120px 20px;
-text-align:center;
+.hero {
+    background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
+                url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 20px 80px;
+    text-align: center;
 }
-.hero h1{
-font-family:'Playfair Display',serif;
-font-size:60px;
-margin-bottom:20px;
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    margin-bottom: 20px;
+    line-height: 1.1;
 }
-.hero p{
-max-width:800px;
-margin:auto;
-font-size:22px;
-margin-bottom:40px;
+
+.hero p {
+    max-width: 800px;
+    margin: auto;
+    font-size: clamp(1.1rem, 4vw, 1.35rem);
+    margin-bottom: 40px;
 }
-.hero-buttons{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
-.primary{
-background:#d63384;
+
+/* VIDEO */
+.video {
+    padding: 70px 20px;
+    background: #f8f8f8;
+    text-align: center;
 }
-.secondary{
-border:2px solid white;
-background:transparent;
+
+.video video {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: #000;
 }
-/* LEAD MAGNET MODAL STYLES */
+
+/* Other Sections */
+.about, .faith, .solutions, .newsletter, .contact {
+    padding: 70px 20px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.about img {
+    width: 100%;
+    border-radius: 20px;
+    border: 8px solid #f8c6dc;
+    box-shadow: 0 10px 25px rgba(214,51,132,.15);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    margin-bottom: 25px;
+    color: #b02a5b;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.solutions .card {
+    background: linear-gradient(135deg, #ffe3ef, #ffd1e6);
+}
+
+.solutions .card:hover {
+    background: linear-gradient(135deg, #d63384, #6a0d3a);
+    color: white;
+    transform: translateY(-8px);
+}
+
+.faith {
+    background: #000;
+    color: #fff;
+}
+
+.newsletter {
+    background: linear-gradient(135deg, #d63384, #000);
+    color: white;
+    text-align: center;
+}
+
+.newsletter input {
+    width: 100%;
+    max-width: 500px;
+    padding: 16px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Modal */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
-  align-items: center;
-  justify-content: center;
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
+
 .modal-content {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 20px;
-  max-width: 620px;
-  width: 90%;
-  position: relative;
-  color: #333;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 620px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
-.close {
-  position: absolute;
-  top: 15px; right: 25px;
-  font-size: 36px;
-  cursor: pointer;
-  color: #b02a5b;
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 25px 15px;
+    }
 }
-.modal h2 {
-  font-family:'Playfair Display',serif;
-  color:#b02a5b;
-  margin-bottom:15px;
-  text-align:center;
+
+/* Footer */
+.footer {
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
 }
-.modal form {
-  display: grid;
-  gap: 16px;
-}
-.modal input {
-  padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.modal button {
-  padding: 18px;
-  background: #d63384;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 18px;
-  cursor: pointer;
-}
-.question {
-  margin: 12px 0;
-  font-weight: 500;
-  color: #444;
-  font-size: 15px;
-}
-/* VIDEO SECTION */
-.video{
-padding:80px 0;
-background:#f8f8f8;
-text-align:center;
-}
-.video video{
-width:100%;
-max-width:1000px;
-height:auto;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-background:#000;
-}
-.faith{
-padding:80px 0;
-background:#000;
-color:#fff;
-text-align:center;
-}
-.faith h2{
-font-size:42px;
-margin-bottom:40px;
-font-family:'Playfair Display',serif;
-}
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-.solutions{
-padding:80px 0;
-background:#fff;
-}
-.solutions h2{
-text-align:center;
-font-family:'Playfair Display',serif;
-font-size:42px;
-margin-bottom:50px;
-}
-.solutions .card{
-padding:30px;
-border-radius:20px;
-background:linear-gradient(135deg,#ffe3ef,#ffd1e6);
-color:#111;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-transition:all .4s ease;
-cursor:pointer;
-}
-.solutions .card:hover{
-background:linear-gradient(135deg,#d63384,#6a0d3a);
-color:#fff;
-transform:translateY(-8px);
-box-shadow:0 15px 35px rgba(0,0,0,.25);
-}
-.card{
-padding:30px;
-border-radius:20px;
-background:white;
-color:black;
-box-shadow:0 10px 25px rgba(0,0,0,.1);
-}
-.newsletter{
-background:linear-gradient(135deg,#d63384,#000);
-color:white;
-padding:80px 20px;
-text-align:center;
-}
-.newsletter input{
-width:100%;
-max-width:500px;
-padding:15px;
-margin-top:20px;
-border:none;
-border-radius:8px;
-}
-.newsletter button{
-margin-top:20px;
-padding:15px 30px;
-border:none;
-background:gold;
-font-weight:bold;
-cursor:pointer;
-border-radius:8px;
-}
-.contact{
-padding:80px 20px;
-text-align:center;
-}
-.contact h2{
-font-family:'Playfair Display',serif;
-font-size:42px;
-margin-bottom:20px;
-}
-.footer{
-background:#000;
-color:white;
-text-align:center;
-padding:40px;
-}
-@media(max-width:768px){
-.hero h1{
-font-size:38px;
-}
-.about-grid{
-grid-template-columns:1fr;
-}
-.video video{
-max-width:100%;
-}
-.nav-container{
-flex-direction:column;
-gap:15px;
-}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 </style>
 </head>
 <body>
+
 <nav>
 <div class="container nav-container">
-<div class="logo">
-FaithShield
-<small>Insurance • Rhina Jasmyn</small>
-</div>
-<div class="nav-links">
-<a href="#about">My Story</a>
-<a href="#faith">Faith Foundation</a>
-<a href="#solutions">Solutions</a>
-<a href="#contact">Connect</a>
-</div>
-<div>
-  <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book A Call</a>
-  <a class="btn primary" onclick="openModal()" style="margin-left:8px;">Get FREE Family Protection Guide</a>
-  <a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank" style="margin-left:8px;">Buy My Book</a>
-</div>
+    <div class="logo">
+        FaithShield
+        <small>Insurance • Rhina Jasmyn</small>
+    </div>
+    
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    
+    <div class="nav-links" id="navLinks">
+        <a href="#about">My Story</a>
+        <a href="#faith">Faith Foundation</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#contact">Connect</a>
+    </div>
+    
+    <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
+        <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book A Call</a>
+        <a class="btn primary" onclick="openModal()" style="background:#d63384;">Get FREE Guide</a>
+    </div>
 </div>
 </nav>
+
 <section class="hero">
-<h1>Secure Your Family's Future With Faith & Wisdom</h1>
-<p>
-After walking through my own divorce and uncertainty, I now help families
-remove the fear of "What If" and protect what matters most.
-</p>
-<div class="hero-buttons">
-<a class="btn primary" onclick="openModal()">Get Your FREE Family Protection Guide</a>
-<a class="btn secondary" href="https://calendly.com/pinkelitestudio" target="_blank">Schedule A Call</a>
-<a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank" style="margin-top:10px;">Buy My Book</a>
-</div>
-</section>
-<div class="trust">
-Symmetry Licensed Partner • Faith Driven Guidance • No Pressure • Honest Advice
-</div>
-<section id="about" class="about">
-<div class="container about-grid">
-<div>
-<img src="Rhinajasmynpicture.jpg" alt="Rhina Jasmyn">
-</div>
-<div>
-<h2>I Understand Your Fears Because I've Lived Them</h2>
-<p>
-After my divorce, life became an emotional roller coaster.
-The constant worry about finances, unexpected expenses,
-and protecting my family became overwhelming.
-</p>
-<br>
-<p>
-Today I help families replace fear with peace through
-life insurance, mortgage protection, disability income,
-annuities, and financial education.
-</p>
-<br>
-<p><strong>"My people are destroyed for lack of knowledge." Hosea 4:6</strong></p>
-</div>
+<div class="container">
+    <h1>Secure Your Family's Future With Faith & Wisdom</h1>
+    <p>After walking through my own divorce and uncertainty, I now help families remove the fear of "What If" and protect what matters most.</p>
+    <div class="hero-buttons">
+        <a class="btn primary" onclick="openModal()">Get Your FREE Family Protection Guide</a>
+        <a class="btn secondary" href="https://calendly.com/pinkelitestudio" target="_blank" style="border:2px solid white; background:transparent; color:white;">Schedule A Call</a>
+        <a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank">Buy My Book</a>
+    </div>
 </div>
 </section>
 
-<!-- ==================== VIDEO SECTION ==================== -->
-<section class="video">
-<div class="container">
-<h2>A Message From My Heart To Yours</h2>
-<br>
-<video controls autoplay loop muted playsinline style="width:100%; max-width:1000px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
-  <source src="insurance video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div class="trust" style="padding:20px; background:#fafafa; text-align:center; font-weight:600; font-size:0.95rem;">
+    Symmetry Licensed Partner • Faith Driven Guidance • No Pressure • Honest Advice
+</div>
+
+<section id="about" class="about">
+<div class="container about-grid">
+    <div><img src="Rhinajasmynpicture.jpg" alt="Rhina Jasmyn"></div>
+    <div>
+        <h2>I Understand Your Fears Because I've Lived Them</h2>
+        <p>After my divorce, life became an emotional roller coaster. The constant worry about finances, unexpected expenses, and protecting my family became overwhelming.</p>
+        <br>
+        <p>Today I help families replace fear with peace through life insurance, mortgage protection, disability income, annuities, and financial education.</p>
+        <br>
+        <p><strong>"My people are destroyed for lack of knowledge." Hosea 4:6</strong></p>
+    </div>
 </div>
 </section>
-<!-- ==================================================== -->
+
+<section class="video">
+<div class="container">
+    <h2>A Message From My Heart To Yours</h2>
+    <br>
+    <video controls autoplay loop muted playsinline>
+        <source src="insurance video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+</section>
 
 <section id="faith" class="faith">
 <div class="container">
-<h2>Rooted In Faith & Wisdom</h2>
-<div class="cards">
-<div class="card"><h3>Psalm 91</h3><p>He who dwells in the shelter of the Most High.</p></div>
-<div class="card"><h3>Philippians 4:19</h3><p>My God will meet all your needs.</p></div>
-<div class="card"><h3>Hosea 4:6</h3><p>Knowledge creates protection.</p></div>
-</div>
+    <h2 style="color:white;">Rooted In Faith & Wisdom</h2>
+    <div class="cards">
+        <div class="card"><h3>Psalm 91</h3><p>He who dwells in the shelter of the Most High.</p></div>
+        <div class="card"><h3>Philippians 4:19</h3><p>My God will meet all your needs.</p></div>
+        <div class="card"><h3>Hosea 4:6</h3><p>Knowledge creates protection.</p></div>
+    </div>
 </div>
 </section>
+
 <section id="solutions" class="solutions">
 <div class="container">
-<h2>Insurance Solutions</h2>
-<div class="cards">
-<div class="card"><h3>Mortgage Protection</h3><p>Keep your home protected.</p></div>
-<div class="card"><h3>Cash Value & Annuities</h3><p>Create additional retirement income.</p></div>
-<div class="card"><h3>Disability Income</h3><p>Protect your paycheck.</p></div>
-<div class="card"><h3>Death Benefit Protection</h3><p>Protect your family.</p></div>
-<div class="card"><h3>Accidental Death Coverage</h3><p>Extra protection for unexpected events.</p></div>
-<div class="card"><h3>Whole & Term Life</h3><p>Flexible coverage options.</p></div>
-</div>
+    <h2>Insurance Solutions</h2>
+    <div class="cards">
+        <div class="card"><h3>Mortgage Protection</h3><p>Keep your home protected.</p></div>
+        <div class="card"><h3>Cash Value & Annuities</h3><p>Create additional retirement income.</p></div>
+        <div class="card"><h3>Disability Income</h3><p>Protect your paycheck.</p></div>
+        <div class="card"><h3>Death Benefit Protection</h3><p>Protect your family.</p></div>
+        <div class="card"><h3>Accidental Death Coverage</h3><p>Extra protection for unexpected events.</p></div>
+        <div class="card"><h3>Whole & Term Life</h3><p>Flexible coverage options.</p></div>
+    </div>
 </div>
 </section>
+
 <section class="newsletter">
-<h2>Let's Stay Connected</h2>
-<input type="email" placeholder="Your Email">
-<br>
-<button>JOIN MY COMMUNITY</button>
+<div class="container">
+    <h2>Let's Stay Connected</h2>
+    <input type="email" placeholder="Your Email">
+    <br>
+    <button style="margin-top:20px; padding:16px 32px; border:none; background:gold; font-weight:bold; cursor:pointer; border-radius:8px;">JOIN MY COMMUNITY</button>
+</div>
 </section>
+
 <section id="contact" class="contact">
-<h2>Ready To Take The Next Step?</h2>
-<p>No sales pressure. Just honest conversation.</p>
-<br>
-<a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book Zoom Call</a>
-<br><br>
-<a class="btn primary" href="tel:7863857888">Call Or Text (786) 385-7888</a>
+<div class="container">
+    <h2>Ready To Take The Next Step?</h2>
+    <p>No sales pressure. Just honest conversation.</p>
+    <br>
+    <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book Zoom Call</a>
+    <br><br>
+    <a class="btn primary" href="tel:7863857888" style="background:#d63384;">Call Or Text (786) 385-7888</a>
+</div>
 </section>
+
 <footer class="footer">
-FaithShield Insurance • Rhina Jasmyn<br>
-Independent Insurance Agent • Licensed with Symmetry
+    FaithShield Insurance • Rhina Jasmyn<br>
+    Independent Insurance Agent • Licensed with Symmetry
 </footer>
 
 <!-- LEAD MAGNET MODAL -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
+    <span class="close" onclick="closeModal()" style="position:absolute; top:15px; right:25px; font-size:36px; cursor:pointer; color:#b02a5b;">×</span>
     <h2>Get Your Free Family Protection Guide</h2>
     <p style="text-align:center; margin-bottom:25px; font-size:17px;">
       <strong>Stop wondering "What if?"</strong><br>
       Answer these important questions and receive immediate clarity + protection steps for your family.
     </p>
-   
     <form name="family-protection" method="POST" data-netlify="true" action="/thank-you">
       <input type="hidden" name="form-name" value="family-protection">
       <input type="text" name="name" required placeholder="Your Full Name">
       <input type="email" name="email" required placeholder="your@email.com">
       <input type="tel" name="phone" placeholder="Phone (optional)">
-     
-      <div class="question">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work or taking an extra job?</div>
+      <div class="question">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work?</div>
       <div class="question">Would your children (11 & 15) be fully covered and protected?</div>
       <div class="question">Would your family be forced to sell or change homes due to the mortgage?</div>
-     
-      <button type="submit">YES — Send Me The Guide Now</button>
+      <button type="submit" style="width:100%; padding:18px; background:#d63384; color:white; border:none; border-radius:8px; font-weight:700; font-size:18px;">YES — Send Me The Guide Now</button>
     </form>
-   
-    <p style="font-size:13px; text-align:center; margin-top:20px; color:#777;">
-      Instant access • Your information is safe • No pressure, faith-driven help only
-    </p>
   </div>
 </div>
 
 <script>
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+
 function openModal() {
-  document.getElementById('leadModal').style.display = 'flex';
+    document.getElementById('leadModal').style.display = 'flex';
 }
+
 function closeModal() {
-  document.getElementById('leadModal').style.display = 'none';
+    document.getElementById('leadModal').style.display = 'none';
 }
-window.onclick = function(event) {
-  const modal = document.getElementById('leadModal');
-  if (event.target === modal) closeModal();
-}
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+    });
+});
 </script>
 </body>
 </html>
