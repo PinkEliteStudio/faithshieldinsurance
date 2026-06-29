@@ -105,7 +105,6 @@ background:#d63384;
 border:2px solid white;
 background:transparent;
 }
-
 /* LEAD MAGNET MODAL STYLES */
 .modal {
   display: none;
@@ -134,15 +133,15 @@ background:transparent;
   cursor: pointer;
   color: #b02a5b;
 }
-.modal h2 { 
-  font-family:'Playfair Display',serif; 
-  color:#b02a5b; 
-  margin-bottom:15px; 
-  text-align:center; 
+.modal h2 {
+  font-family:'Playfair Display',serif;
+  color:#b02a5b;
+  margin-bottom:15px;
+  text-align:center;
 }
-.modal form { 
-  display: grid; 
-  gap: 16px; 
+.modal form {
+  display: grid;
+  gap: 16px;
 }
 .modal input {
   padding: 16px;
@@ -166,7 +165,6 @@ background:transparent;
   color: #444;
   font-size: 15px;
 }
-
 /* Rest of your styles */
 .trust{
 padding:20px;
@@ -201,11 +199,12 @@ padding:80px 0;
 background:#f8f8f8;
 text-align:center;
 }
-.video iframe{
+.video video{
 width:100%;
-height:500px;
-border:none;
+max-width:1000px;
+height:auto;
 border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 .faith{
 padding:80px 0;
@@ -300,8 +299,8 @@ font-size:38px;
 .about-grid{
 grid-template-columns:1fr;
 }
-.video iframe{
-height:300px;
+.video video{
+max-width:100%;
 }
 .nav-container{
 flex-direction:column;
@@ -311,7 +310,6 @@ gap:15px;
 </style>
 </head>
 <body>
-
 <nav>
 <div class="container nav-container">
 <div class="logo">
@@ -331,7 +329,6 @@ FaithShield
 </div>
 </div>
 </nav>
-
 <section class="hero">
 <h1>Secure Your Family's Future With Faith & Wisdom</h1>
 <p>
@@ -344,11 +341,9 @@ remove the fear of "What If" and protect what matters most.
 <a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank" style="margin-top:10px;">Buy My Book</a>
 </div>
 </section>
-
 <div class="trust">
 Symmetry Licensed Partner • Faith Driven Guidance • No Pressure • Honest Advice
 </div>
-
 <section id="about" class="about">
 <div class="container about-grid">
 <div>
@@ -372,15 +367,16 @@ annuities, and financial education.
 </div>
 </div>
 </section>
-
 <section class="video">
 <div class="container">
 <h2>A Message From My Heart To Yours</h2>
 <br>
-<iframe src="https://www.youtube.com/embed/ZV1uHMwiG0M?rel=0" allowfullscreen style="width:100%; height:500px; border-radius:20px; border:none;"></iframe>
+<video controls autoplay loop muted playsinline>
+  <source src="insurance_video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 </div>
 </section>
-
 <section id="faith" class="faith">
 <div class="container">
 <h2>Rooted In Faith & Wisdom</h2>
@@ -391,7 +387,6 @@ annuities, and financial education.
 </div>
 </div>
 </section>
-
 <section id="solutions" class="solutions">
 <div class="container">
 <h2>Insurance Solutions</h2>
@@ -405,14 +400,12 @@ annuities, and financial education.
 </div>
 </div>
 </section>
-
 <section class="newsletter">
 <h2>Let's Stay Connected</h2>
 <input type="email" placeholder="Your Email">
 <br>
 <button>JOIN MY COMMUNITY</button>
 </section>
-
 <section id="contact" class="contact">
 <h2>Ready To Take The Next Step?</h2>
 <p>No sales pressure. Just honest conversation.</p>
@@ -421,12 +414,10 @@ annuities, and financial education.
 <br><br>
 <a class="btn primary" href="tel:7863857888">Call Or Text (786) 385-7888</a>
 </section>
-
 <footer class="footer">
 FaithShield Insurance • Rhina Jasmyn<br>
 Independent Insurance Agent • Licensed with Symmetry
 </footer>
-
 <!-- LEAD MAGNET MODAL -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
@@ -436,26 +427,25 @@ Independent Insurance Agent • Licensed with Symmetry
       <strong>Stop wondering "What if?"</strong><br>
       Answer these important questions and receive immediate clarity + protection steps for your family.
     </p>
-    
+   
     <form name="family-protection" method="POST" data-netlify="true" action="/thank-you">
       <input type="hidden" name="form-name" value="family-protection">
       <input type="text" name="name" required placeholder="Your Full Name">
       <input type="email" name="email" required placeholder="your@email.com">
       <input type="tel" name="phone" placeholder="Phone (optional)">
-      
+     
       <div class="question">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work or taking an extra job?</div>
       <div class="question">Would your children (11 & 15) be fully covered and protected?</div>
       <div class="question">Would your family be forced to sell or change homes due to the mortgage?</div>
-      
+     
       <button type="submit">YES — Send Me The Guide Now</button>
     </form>
-    
+   
     <p style="font-size:13px; text-align:center; margin-top:20px; color:#777;">
       Instant access • Your information is safe • No pressure, faith-driven help only
     </p>
   </div>
 </div>
-
 <script>
 function openModal() {
   document.getElementById('leadModal').style.display = 'flex';
@@ -468,6 +458,5 @@ window.onclick = function(event) {
   if (event.target === modal) closeModal();
 }
 </script>
-
 </body>
 </html>
