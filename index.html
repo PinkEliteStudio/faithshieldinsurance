@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +67,7 @@ nav {
     padding: 8px 0;
 }
 
-/* Hamburger Menu */
+/* Hamburger */
 .hamburger {
     display: none;
     font-size: 28px;
@@ -76,7 +75,6 @@ nav {
     padding: 5px;
 }
 
-/* Buttons */
 .btn {
     display: inline-block;
     padding: 14px 24px;
@@ -141,7 +139,7 @@ nav {
     background: #000;
 }
 
-/* Other Sections */
+/* SECTIONS */
 .about, .faith, .solutions, .newsletter, .contact {
     padding: 70px 20px;
 }
@@ -154,9 +152,7 @@ nav {
 }
 
 @media (min-width: 768px) {
-    .about-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .about-grid { grid-template-columns: 1fr 1fr; }
 }
 
 .about img {
@@ -185,6 +181,25 @@ h2 {
     background: white;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Faith Section Cards */
+.faith {
+    background: #000;
+    color: #fff;
+}
+
+.faith .card {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.faith .card h3 {
+    color: #ffd700;
+    margin-bottom: 12px;
+    font-size: 1.25rem;
 }
 
 .solutions .card {
@@ -195,11 +210,6 @@ h2 {
     background: linear-gradient(135deg, #d63384, #6a0d3a);
     color: white;
     transform: translateY(-8px);
-}
-
-.faith {
-    background: #000;
-    color: #fff;
 }
 
 .newsletter {
@@ -238,12 +248,16 @@ h2 {
     width: 100%;
     max-width: 620px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
 }
 
-@media (max-width: 480px) {
-    .modal-content {
-        padding: 25px 15px;
-    }
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 36px;
+    cursor: pointer;
+    color: #b02a5b;
 }
 
 /* Footer */
@@ -263,20 +277,16 @@ h2 {
         gap: 15px;
         margin-top: 15px;
     }
-    
     .nav-links.active {
         display: flex;
     }
-    
     .hamburger {
         display: block;
     }
-    
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
     .btn {
         width: 100%;
         max-width: 300px;
@@ -304,7 +314,7 @@ h2 {
     
     <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
         <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book A Call</a>
-        <a class="btn primary" onclick="openModal()" style="background:#d63384;">Get FREE Guide</a>
+        <a class="btn" onclick="openModal()" style="background:#d63384;">Get FREE Guide</a>
     </div>
 </div>
 </nav>
@@ -314,8 +324,8 @@ h2 {
     <h1>Secure Your Family's Future With Faith & Wisdom</h1>
     <p>After walking through my own divorce and uncertainty, I now help families remove the fear of "What If" and protect what matters most.</p>
     <div class="hero-buttons">
-        <a class="btn primary" onclick="openModal()">Get Your FREE Family Protection Guide</a>
-        <a class="btn secondary" href="https://calendly.com/pinkelitestudio" target="_blank" style="border:2px solid white; background:transparent; color:white;">Schedule A Call</a>
+        <a class="btn" onclick="openModal()" style="background:#d63384;">Get Your FREE Family Protection Guide</a>
+        <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank" style="border:2px solid white; background:transparent; color:white;">Schedule A Call</a>
         <a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank">Buy My Book</a>
     </div>
 </div>
@@ -352,11 +362,20 @@ h2 {
 
 <section id="faith" class="faith">
 <div class="container">
-    <h2 style="color:white;">Rooted In Faith & Wisdom</h2>
+    <h2 style="color:white; margin-bottom:40px;">Rooted In Faith & Wisdom</h2>
     <div class="cards">
-        <div class="card"><h3>Psalm 91</h3><p>He who dwells in the shelter of the Most High.</p></div>
-        <div class="card"><h3>Philippians 4:19</h3><p>My God will meet all your needs.</p></div>
-        <div class="card"><h3>Hosea 4:6</h3><p>Knowledge creates protection.</p></div>
+        <div class="card">
+            <h3>Psalm 91</h3>
+            <p>He who dwells in the shelter of the Most High will rest in the shadow of the Almighty.</p>
+        </div>
+        <div class="card">
+            <h3>Philippians 4:19</h3>
+            <p>My God will meet all your needs according to the riches of his glory in Christ Jesus.</p>
+        </div>
+        <div class="card">
+            <h3>Hosea 4:6</h3>
+            <p>My people are destroyed for lack of knowledge.</p>
+        </div>
     </div>
 </div>
 </section>
@@ -391,7 +410,7 @@ h2 {
     <br>
     <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book Zoom Call</a>
     <br><br>
-    <a class="btn primary" href="tel:7863857888" style="background:#d63384;">Call Or Text (786) 385-7888</a>
+    <a class="btn" href="tel:7863857888" style="background:#d63384;">Call Or Text (786) 385-7888</a>
 </div>
 </section>
 
@@ -403,7 +422,7 @@ h2 {
 <!-- LEAD MAGNET MODAL -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()" style="position:absolute; top:15px; right:25px; font-size:36px; cursor:pointer; color:#b02a5b;">×</span>
+    <span class="close" onclick="closeModal()">×</span>
     <h2>Get Your Free Family Protection Guide</h2>
     <p style="text-align:center; margin-bottom:25px; font-size:17px;">
       <strong>Stop wondering "What if?"</strong><br>
@@ -414,9 +433,9 @@ h2 {
       <input type="text" name="name" required placeholder="Your Full Name">
       <input type="email" name="email" required placeholder="your@email.com">
       <input type="tel" name="phone" placeholder="Phone (optional)">
-      <div class="question">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work?</div>
-      <div class="question">Would your children (11 & 15) be fully covered and protected?</div>
-      <div class="question">Would your family be forced to sell or change homes due to the mortgage?</div>
+      <div class="question" style="margin:12px 0; font-weight:500;">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work?</div>
+      <div class="question" style="margin:12px 0; font-weight:500;">Would your children (11 & 15) be fully covered and protected?</div>
+      <div class="question" style="margin:12px 0; font-weight:500;">Would your family be forced to sell or change homes due to the mortgage?</div>
       <button type="submit" style="width:100%; padding:18px; background:#d63384; color:white; border:none; border-radius:8px; font-weight:700; font-size:18px;">YES — Send Me The Guide Now</button>
     </form>
   </div>
@@ -435,7 +454,7 @@ function closeModal() {
     document.getElementById('leadModal').style.display = 'none';
 }
 
-// Close mobile menu when clicking a link
+// Close mobile menu when clicking links
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         document.getElementById('navLinks').classList.remove('active');
