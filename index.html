@@ -165,35 +165,7 @@ background:transparent;
   color: #444;
   font-size: 15px;
 }
-/* Rest of your styles */
-.trust{
-padding:20px;
-background:#fafafa;
-text-align:center;
-font-weight:600;
-}
-.about{
-padding:80px 0;
-background:linear-gradient(180deg,#fff0f6,#ffffff);
-}
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
-}
-.about img{
-width:100%;
-border-radius:20px;
-border:8px solid #f8c6dc;
-box-shadow:0 10px 25px rgba(214,51,132,.15);
-}
-.about h2{
-font-family:'Playfair Display',serif;
-font-size:42px;
-margin-bottom:20px;
-color:#b02a5b;
-}
+/* VIDEO SECTION */
 .video{
 padding:80px 0;
 background:#f8f8f8;
@@ -205,6 +177,7 @@ max-width:1000px;
 height:auto;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,0.15);
+background:#000;
 }
 .faith{
 padding:80px 0;
@@ -367,16 +340,20 @@ annuities, and financial education.
 </div>
 </div>
 </section>
+
+<!-- ==================== VIDEO SECTION ==================== -->
 <section class="video">
 <div class="container">
 <h2>A Message From My Heart To Yours</h2>
 <br>
-<video controls autoplay loop muted playsinline>
-  <source src="insurance_video.mp4" type="video/mp4">
+<video controls autoplay loop muted playsinline style="width:100%; max-width:1000px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+  <source src="insurance video.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 </div>
 </section>
+<!-- ==================================================== -->
+
 <section id="faith" class="faith">
 <div class="container">
 <h2>Rooted In Faith & Wisdom</h2>
@@ -418,6 +395,7 @@ annuities, and financial education.
 FaithShield Insurance • Rhina Jasmyn<br>
 Independent Insurance Agent • Licensed with Symmetry
 </footer>
+
 <!-- LEAD MAGNET MODAL -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
@@ -446,6 +424,7 @@ Independent Insurance Agent • Licensed with Symmetry
     </p>
   </div>
 </div>
+
 <script>
 function openModal() {
   document.getElementById('leadModal').style.display = 'flex';
