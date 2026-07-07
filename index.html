@@ -192,7 +192,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 <!-- =========================================================== -->
 <!-- QUOTE / INTAKE FORM  ->  KIT (tagged "insurance-prospect")   -->
 <!-- This does NOT show a price. It qualifies the lead so Rhina   -->
-<!-- can follow up with a real quote. Replace QUOTE_FORM_ID.      -->
+<!-- can follow up with a real quote. Wired to Kit form 9657802. -->
 <!-- Setup Step 5 in the instructions.                            -->
 <!-- =========================================================== -->
 <section id="quote" class="quote">
@@ -203,7 +203,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
             <h2>Get My Personalized Quote</h2>
             <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
 
-            <form action="https://app.kit.com/forms/QUOTE_FORM_ID/subscriptions" method="POST" id="kit-quote-form">
+            <form action="https://app.kit.com/forms/9657802/subscriptions" method="POST" id="kit-quote-form">
                 <div class="form-grid">
                     <div class="field">
                         <label>Full Name</label>
@@ -259,7 +259,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
                     </div>
                     <div class="field full">
                         <label>Best Time To Reach You</label>
-                        <select name="fields[best_time]">
+                        <select name="fields[best_time_to_call]">
                             <option value="Anytime">Anytime</option>
                             <option value="Morning">Morning</option>
                             <option value="Afternoon">Afternoon</option>
@@ -300,12 +300,10 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     <h2>Get My Monthly Faith &amp; Finance Newsletter</h2>
     <p>Free, monthly, and practical — faith-driven wisdom on protecting your family and stewarding what God gave you.</p>
 
-    <!-- PASTE KIT NEWSLETTER FORM EMBED HERE -->
-    <form id="kit-newsletter" onsubmit="return false;">
-        <input type="email" id="newsletterEmail" placeholder="Your Email" required>
-        <br>
-        <button class="btn" style="margin-top:20px; background:gold; color:#000;">JOIN MY COMMUNITY</button>
-    </form>
+    <!-- KIT NEWSLETTER FORM (9657845) -->
+    <div style="max-width:600px; margin:20px auto 0;">
+        <script async data-uid="c5f1ea7bde" src="https://call-to-more-2.kit.com/c5f1ea7bde/index.js"></script>
+    </div>
     <!-- END KIT NEWSLETTER FORM -->
 
 </div>
@@ -329,7 +327,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 
 <!-- =========================================================== -->
 <!-- LEAD MAGNET MODAL  ->  KIT (Family Protection Guide PDF)    -->
-<!-- Replace GUIDE_FORM_ID. Setup Step 4.                        -->
+<!-- Wired to Kit form 9657602 (Family Protection Guide).       -->
 <!-- =========================================================== -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
@@ -342,7 +340,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
           Answer these important questions and receive immediate clarity + protection steps for your family.
         </p>
 
-        <form action="https://app.kit.com/forms/GUIDE_FORM_ID/subscriptions" method="POST" id="kit-lead-form">
+        <form action="https://app.kit.com/forms/9657602/subscriptions" method="POST" id="kit-lead-form">
           <input type="text" name="fields[first_name]" required placeholder="Your Full Name">
           <input type="email" name="email_address" required placeholder="your@email.com">
           <input type="tel" name="fields[phone]" placeholder="Phone (optional)">
