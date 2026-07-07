@@ -6,291 +6,95 @@
 <title>FaithShield Insurance | Rhina Jasmyn</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    overflow-x: hidden;
-}
+body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
+.container { width: 90%; max-width: 1200px; margin: auto; }
 
 /* NAVIGATION */
-nav {
-    position: sticky;
-    top: 0;
-    background: #fff;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-    z-index: 1000;
-}
+nav { position: sticky; top: 0; background: #fff; padding: 15px 0; border-bottom: 1px solid #eee; z-index: 1000; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.logo { font-size: 26px; font-weight: bold; font-family: 'Playfair Display', serif; }
+.logo small { display: block; font-size: 11px; color: #777; }
+.nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; color: #333; font-weight: 600; padding: 8px 0; }
+.hamburger { display: none; font-size: 28px; cursor: pointer; padding: 5px; }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.logo {
-    font-size: 26px;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif;
-}
-
-.logo small {
-    display: block;
-    font-size: 11px;
-    color: #777;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    padding: 8px 0;
-}
-
-/* Hamburger */
-.hamburger {
-    display: none;
-    font-size: 28px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 14px 24px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    text-align: center;
-}
-
-.book-btn {
-    background: #d63384;
-    color: white;
-}
+.btn { display: inline-block; padding: 14px 24px; background: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; border: none; font-size: 15px; }
+.book-btn { background: #d63384; color: white; }
 
 /* HERO */
 .hero {
     background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
                 url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    padding: 100px 20px 80px;
-    text-align: center;
+    background-size: cover; background-position: center; color: #fff; padding: 100px 20px 80px; text-align: center;
 }
-
-.hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 8vw, 3.5rem);
-    margin-bottom: 20px;
-    line-height: 1.1;
-}
-
-.hero p {
-    max-width: 800px;
-    margin: auto;
-    font-size: clamp(1.1rem, 4vw, 1.35rem);
-    margin-bottom: 40px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 8vw, 3.5rem); margin-bottom: 20px; line-height: 1.1; }
+.hero p { max-width: 800px; margin: auto; font-size: clamp(1.1rem, 4vw, 1.35rem); margin-bottom: 40px; }
+.hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 
 /* VIDEO */
-.video {
-    padding: 70px 20px;
-    background: #f8f8f8;
-    text-align: center;
-}
-
-.video video {
-    width: 100%;
-    max-width: 1000px;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    background: #000;
-}
+.video { padding: 70px 20px; background: #f8f8f8; text-align: center; }
+.video video { width: 100%; max-width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); background: #000; }
 
 /* SECTIONS */
-.about, .faith, .solutions, .newsletter, .contact {
-    padding: 70px 20px;
-}
+.about, .faith, .solutions, .quote, .newsletter, .contact { padding: 70px 20px; }
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+@media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+.about img { width: 100%; border-radius: 20px; border: 8px solid #f8c6dc; box-shadow: 0 10px 25px rgba(214,51,132,.15); }
 
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-items: center;
-}
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem); margin-bottom: 25px; color: #b02a5b; }
 
-@media (min-width: 768px) {
-    .about-grid { grid-template-columns: 1fr 1fr; }
-}
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.card { padding: 25px; border-radius: 20px; background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; }
 
-.about img {
-    width: 100%;
-    border-radius: 20px;
-    border: 8px solid #f8c6dc;
-    box-shadow: 0 10px 25px rgba(214,51,132,.15);
-}
+.faith { background: #000; color: #fff; }
+.faith .card { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+.faith .card h3 { color: #ffd700; margin-bottom: 12px; font-size: 1.25rem; }
 
-h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 2.8rem);
-    margin-bottom: 25px;
-    color: #b02a5b;
-}
+.solutions .card { background: linear-gradient(135deg, #ffe3ef, #ffd1e6); }
+.solutions .card:hover { background: linear-gradient(135deg, #d63384, #6a0d3a); color: white; transform: translateY(-8px); }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-}
+/* QUOTE / INTAKE FORM SECTION */
+.quote { background: linear-gradient(135deg, #fff5fa, #ffe3ef); }
+.quote-box { max-width: 720px; margin: auto; background: #fff; border-radius: 24px; padding: 40px 30px; box-shadow: 0 15px 40px rgba(214,51,132,.15); }
+.quote h2 { text-align: center; }
+.quote .sub { text-align: center; margin-bottom: 30px; font-size: 1.1rem; color: #555; }
+.form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 600px) { .form-grid { grid-template-columns: 1fr 1fr; } .form-grid .full { grid-column: 1 / -1; } }
+.field label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
+.field input, .field select { width: 100%; padding: 14px; border: 1px solid #e0c4d4; border-radius: 10px; font-size: 16px; background: #fff; }
+.field input:focus, .field select:focus { outline: none; border-color: #d63384; }
+.consent { font-size: 0.8rem; color: #777; margin-top: 16px; line-height: 1.4; }
+.quote-submit { width: 100%; padding: 18px; background: #d63384; color: #fff; border: none; border-radius: 12px; font-weight: 700; font-size: 18px; cursor: pointer; margin-top: 10px; }
+.quote-submit:hover { background: #b02a5b; }
 
-.card {
-    padding: 25px;
-    border-radius: 20px;
-    background: white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    text-align: center;
-}
+/* NEWSLETTER */
+.newsletter { background: linear-gradient(135deg, #d63384, #000); color: white; text-align: center; }
+.newsletter input { width: 100%; max-width: 500px; padding: 16px; margin-top: 20px; border: none; border-radius: 8px; font-size: 16px; }
 
-/* Faith Section Cards */
-.faith {
-    background: #000;
-    color: #fff;
-}
+/* MODAL */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.modal-content { background: white; padding: 30px 20px; border-radius: 20px; width: 100%; max-width: 620px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; margin: auto; }
+.modal-content input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+.close { position: absolute; top: 15px; right: 25px; font-size: 36px; cursor: pointer; color: #b02a5b; }
 
-.faith .card {
-    background: rgba(255,255,255,0.1);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.2);
-}
+/* FOOTER */
+.footer { background: #000; color: white; text-align: center; padding: 40px 20px; }
 
-.faith .card h3 {
-    color: #ffd700;
-    margin-bottom: 12px;
-    font-size: 1.25rem;
-}
+/* SUCCESS / THANK YOU BOX */
+.thankyou { display: none; text-align: center; padding: 20px; }
+.thankyou h3 { color: #b02a5b; font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 12px; }
+.thankyou p { margin-bottom: 20px; }
 
-.solutions .card {
-    background: linear-gradient(135deg, #ffe3ef, #ffd1e6);
-}
-
-.solutions .card:hover {
-    background: linear-gradient(135deg, #d63384, #6a0d3a);
-    color: white;
-    transform: translateY(-8px);
-}
-
-.newsletter {
-    background: linear-gradient(135deg, #d63384, #000);
-    color: white;
-    text-align: center;
-}
-
-.newsletter input {
-    width: 100%;
-    max-width: 500px;
-    padding: 16px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-content {
-    background: white;
-    padding: 30px 20px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 620px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 36px;
-    cursor: pointer;
-    color: #b02a5b;
-}
-
-/* Footer */
-.footer {
-    background: #000;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-}
-
-/* Mobile Menu */
+/* MOBILE */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        gap: 15px;
-        margin-top: 15px;
-    }
-    .nav-links.active {
-        display: flex;
-    }
-    .hamburger {
-        display: block;
-    }
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    .btn {
-        width: 100%;
-        max-width: 300px;
-    }
+    .nav-links { display: none; flex-direction: column; width: 100%; gap: 15px; margin-top: 15px; }
+    .nav-links.active { display: flex; }
+    .hamburger { display: block; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 300px; }
 }
 </style>
 </head>
@@ -302,18 +106,16 @@ h2 {
         FaithShield
         <small>Insurance • Rhina Jasmyn</small>
     </div>
-    
     <div class="hamburger" onclick="toggleMenu()">☰</div>
-    
     <div class="nav-links" id="navLinks">
         <a href="#about">My Story</a>
         <a href="#faith">Faith Foundation</a>
         <a href="#solutions">Solutions</a>
+        <a href="#quote">Get A Quote</a>
         <a href="#contact">Connect</a>
     </div>
-    
     <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
-        <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book A Call</a>
+        <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank">Book A Call</a>
         <a class="btn" onclick="openModal()" style="background:#d63384;">Get FREE Guide</a>
     </div>
 </div>
@@ -321,11 +123,11 @@ h2 {
 
 <section class="hero">
 <div class="container">
-    <h1>Secure Your Family's Future With Faith & Wisdom</h1>
+    <h1>Secure Your Family's Future With Faith &amp; Wisdom</h1>
     <p>After walking through my own divorce and uncertainty, I now help families remove the fear of "What If" and protect what matters most.</p>
     <div class="hero-buttons">
-        <a class="btn" onclick="openModal()" style="background:#d63384;">Get Your FREE Family Protection Guide</a>
-        <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank" style="border:2px solid white; background:transparent; color:white;">Schedule A Call</a>
+        <a class="btn" href="#quote" style="background:#d63384;">Get My Personalized Quote</a>
+        <a class="btn" onclick="openModal()" style="border:2px solid white; background:transparent; color:white;">Get FREE Family Guide</a>
         <a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank">Buy My Book</a>
     </div>
 </div>
@@ -357,25 +159,18 @@ h2 {
         <source src="insurance video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    <br><br>
+    <a class="btn" onclick="openModal()" style="background:#d63384;">Get Your FREE Family Protection Guide</a>
 </div>
 </section>
 
 <section id="faith" class="faith">
 <div class="container">
-    <h2 style="color:white; margin-bottom:40px;">Rooted In Faith & Wisdom</h2>
+    <h2 style="color:white; margin-bottom:40px;">Rooted In Faith &amp; Wisdom</h2>
     <div class="cards">
-        <div class="card">
-            <h3>Psalm 91</h3>
-            <p>He who dwells in the shelter of the Most High will rest in the shadow of the Almighty.</p>
-        </div>
-        <div class="card">
-            <h3>Philippians 4:19</h3>
-            <p>My God will meet all your needs according to the riches of his glory in Christ Jesus.</p>
-        </div>
-        <div class="card">
-            <h3>Hosea 4:6</h3>
-            <p>My people are destroyed for lack of knowledge.</p>
-        </div>
+        <div class="card"><h3>Psalm 91</h3><p>He who dwells in the shelter of the Most High will rest in the shadow of the Almighty.</p></div>
+        <div class="card"><h3>Philippians 4:19</h3><p>My God will meet all your needs according to the riches of his glory in Christ Jesus.</p></div>
+        <div class="card"><h3>Hosea 4:6</h3><p>My people are destroyed for lack of knowledge.</p></div>
     </div>
 </div>
 </section>
@@ -385,21 +180,134 @@ h2 {
     <h2>Insurance Solutions</h2>
     <div class="cards">
         <div class="card"><h3>Mortgage Protection</h3><p>Keep your home protected.</p></div>
-        <div class="card"><h3>Cash Value & Annuities</h3><p>Create additional retirement income.</p></div>
+        <div class="card"><h3>Cash Value &amp; Annuities</h3><p>Create additional retirement income.</p></div>
         <div class="card"><h3>Disability Income</h3><p>Protect your paycheck.</p></div>
         <div class="card"><h3>Death Benefit Protection</h3><p>Protect your family.</p></div>
         <div class="card"><h3>Accidental Death Coverage</h3><p>Extra protection for unexpected events.</p></div>
-        <div class="card"><h3>Whole & Term Life</h3><p>Flexible coverage options.</p></div>
+        <div class="card"><h3>Whole &amp; Term Life</h3><p>Flexible coverage options.</p></div>
     </div>
 </div>
 </section>
 
+<!-- =========================================================== -->
+<!-- QUOTE / INTAKE FORM  ->  KIT (tagged "insurance-prospect")   -->
+<!-- This does NOT show a price. It qualifies the lead so Rhina   -->
+<!-- can follow up with a real quote. Replace QUOTE_FORM_ID.      -->
+<!-- Setup Step 5 in the instructions.                            -->
+<!-- =========================================================== -->
+<section id="quote" class="quote">
+<div class="container">
+    <div class="quote-box">
+
+        <div id="quoteFormWrap">
+            <h2>Get My Personalized Quote</h2>
+            <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
+
+            <form action="https://app.kit.com/forms/QUOTE_FORM_ID/subscriptions" method="POST" id="kit-quote-form">
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input type="text" name="fields[first_name]" required placeholder="Your full name">
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input type="email" name="email_address" required placeholder="your@email.com">
+                    </div>
+                    <div class="field">
+                        <label>Phone</label>
+                        <input type="tel" name="fields[phone]" required placeholder="(786) 000-0000">
+                    </div>
+                    <div class="field">
+                        <label>Age</label>
+                        <input type="number" name="fields[age]" min="18" max="90" required placeholder="e.g. 42">
+                    </div>
+                    <div class="field">
+                        <label>State You Live In</label>
+                        <input type="text" name="fields[state]" required placeholder="e.g. Florida" value="Florida">
+                    </div>
+                    <div class="field">
+                        <label>Do You Use Tobacco?</label>
+                        <select name="fields[tobacco]" required>
+                            <option value="">Select…</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>What Are You Interested In?</label>
+                        <select name="fields[coverage_type]" required>
+                            <option value="">Select…</option>
+                            <option value="Mortgage Protection">Mortgage Protection</option>
+                            <option value="Term Life">Term Life Insurance</option>
+                            <option value="Whole Life">Whole Life Insurance</option>
+                            <option value="Disability Income">Disability Income</option>
+                            <option value="Annuities / Retirement">Annuities / Retirement Income</option>
+                            <option value="Final Expense">Final Expense</option>
+                            <option value="Not Sure">Not Sure — Help Me Decide</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Coverage Amount (if known)</label>
+                        <select name="fields[coverage_amount]">
+                            <option value="">Not sure yet</option>
+                            <option value="Under $100k">Under $100,000</option>
+                            <option value="$100k-$250k">$100,000 – $250,000</option>
+                            <option value="$250k-$500k">$250,000 – $500,000</option>
+                            <option value="$500k-$1M">$500,000 – $1,000,000</option>
+                            <option value="Over $1M">Over $1,000,000</option>
+                        </select>
+                    </div>
+                    <div class="field full">
+                        <label>Best Time To Reach You</label>
+                        <select name="fields[best_time]">
+                            <option value="Anytime">Anytime</option>
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Evening">Evening</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- tag so these leads are separate from newsletter/guide leads -->
+                <input type="hidden" name="tags[]" value="insurance-prospect">
+
+                <button type="submit" class="quote-submit">Send Me My Personalized Quote →</button>
+
+                <p class="consent">
+                    By submitting, you agree that Rhina Jasmyn / FaithShield Insurance may contact you by phone, text, or email about insurance options. This is not an instant quote — a licensed agent will personally follow up. No purchase obligation.
+                </p>
+            </form>
+        </div>
+
+        <!-- Shown after successful submit -->
+        <div id="quoteThankYou" class="thankyou">
+            <h3>Thank You — I've Got Your Information! 🙏</h3>
+            <p>I'll personally review your details and reach out <strong>within 24 hours</strong> with real options tailored to your family.<br><br>Want to grab a time now instead of waiting?</p>
+            <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank" style="background:#d63384;">Book My Call Now</a>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- =========================================================== -->
+<!-- NEWSLETTER  ->  KIT INLINE EMBED (monthly newsletter list)  -->
+<!-- Replace this whole form block with Kit's JavaScript embed   -->
+<!-- for your newsletter form. Setup Step 6.                     -->
+<!-- =========================================================== -->
 <section class="newsletter">
 <div class="container">
-    <h2>Let's Stay Connected</h2>
-    <input type="email" placeholder="Your Email">
-    <br>
-    <button style="margin-top:20px; padding:16px 32px; border:none; background:gold; font-weight:bold; cursor:pointer; border-radius:8px;">JOIN MY COMMUNITY</button>
+    <h2>Get My Monthly Faith &amp; Finance Newsletter</h2>
+    <p>Free, monthly, and practical — faith-driven wisdom on protecting your family and stewarding what God gave you.</p>
+
+    <!-- PASTE KIT NEWSLETTER FORM EMBED HERE -->
+    <form id="kit-newsletter" onsubmit="return false;">
+        <input type="email" id="newsletterEmail" placeholder="Your Email" required>
+        <br>
+        <button class="btn" style="margin-top:20px; background:gold; color:#000;">JOIN MY COMMUNITY</button>
+    </form>
+    <!-- END KIT NEWSLETTER FORM -->
+
 </div>
 </section>
 
@@ -408,7 +316,7 @@ h2 {
     <h2>Ready To Take The Next Step?</h2>
     <p>No sales pressure. Just honest conversation.</p>
     <br>
-    <a class="btn" href="https://calendly.com/pinkelitestudio" target="_blank">Book Zoom Call</a>
+    <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank">Book Zoom Call</a>
     <br><br>
     <a class="btn" href="tel:7863857888" style="background:#d63384;">Call Or Text (786) 385-7888</a>
 </div>
@@ -419,25 +327,42 @@ h2 {
     Independent Insurance Agent • Licensed with Symmetry
 </footer>
 
-<!-- LEAD MAGNET MODAL -->
+<!-- =========================================================== -->
+<!-- LEAD MAGNET MODAL  ->  KIT (Family Protection Guide PDF)    -->
+<!-- Replace GUIDE_FORM_ID. Setup Step 4.                        -->
+<!-- =========================================================== -->
 <div id="leadModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">×</span>
-    <h2>Get Your Free Family Protection Guide</h2>
-    <p style="text-align:center; margin-bottom:25px; font-size:17px;">
-      <strong>Stop wondering "What if?"</strong><br>
-      Answer these important questions and receive immediate clarity + protection steps for your family.
-    </p>
-    <form name="family-protection" method="POST" data-netlify="true" action="/thank-you">
-      <input type="hidden" name="form-name" value="family-protection">
-      <input type="text" name="name" required placeholder="Your Full Name">
-      <input type="email" name="email" required placeholder="your@email.com">
-      <input type="tel" name="phone" placeholder="Phone (optional)">
-      <div class="question" style="margin:12px 0; font-weight:500;">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work?</div>
-      <div class="question" style="margin:12px 0; font-weight:500;">Would your children (11 & 15) be fully covered and protected?</div>
-      <div class="question" style="margin:12px 0; font-weight:500;">Would your family be forced to sell or change homes due to the mortgage?</div>
-      <button type="submit" style="width:100%; padding:18px; background:#d63384; color:white; border:none; border-radius:8px; font-weight:700; font-size:18px;">YES — Send Me The Guide Now</button>
-    </form>
+
+    <div id="guideFormWrap">
+        <h2>Get Your Free Family Protection Guide</h2>
+        <p style="text-align:center; margin-bottom:25px; font-size:17px;">
+          <strong>Stop wondering "What if?"</strong><br>
+          Answer these important questions and receive immediate clarity + protection steps for your family.
+        </p>
+
+        <form action="https://app.kit.com/forms/GUIDE_FORM_ID/subscriptions" method="POST" id="kit-lead-form">
+          <input type="text" name="fields[first_name]" required placeholder="Your Full Name">
+          <input type="email" name="email_address" required placeholder="your@email.com">
+          <input type="tel" name="fields[phone]" placeholder="Phone (optional)">
+
+          <div style="margin:12px 0; font-weight:500;">If you passed away today, would your spouse have funds to cover the next 12 months without going back to work?</div>
+          <div style="margin:12px 0; font-weight:500;">Would your children be fully covered and protected?</div>
+          <div style="margin:12px 0; font-weight:500;">Would your family be forced to sell or change homes due to the mortgage?</div>
+
+          <input type="hidden" name="tags[]" value="family-protection-guide">
+
+          <button type="submit" style="width:100%; padding:18px; background:#d63384; color:white; border:none; border-radius:8px; font-weight:700; font-size:18px; cursor:pointer;">YES — Send Me The Guide Now</button>
+        </form>
+    </div>
+
+    <div id="guideThankYou" class="thankyou">
+        <h3>Check Your Email! 🎉</h3>
+        <p>Your Family Protection Guide is on its way. If you don't see it in a few minutes, check your spam folder.</p>
+        <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank" style="background:#d63384;">Book A Free Call With Rhina</a>
+    </div>
+
   </div>
 </div>
 
@@ -445,21 +370,58 @@ h2 {
 function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('active');
 }
-
 function openModal() {
     document.getElementById('leadModal').style.display = 'flex';
 }
-
 function closeModal() {
     document.getElementById('leadModal').style.display = 'none';
 }
-
-// Close mobile menu when clicking links
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         document.getElementById('navLinks').classList.remove('active');
     });
 });
+document.getElementById('leadModal').addEventListener('click', function(e){
+    if (e.target === this) closeModal();
+});
+
+/* --- Submit forms to Kit via fetch, then show thank-you (no page redirect) --- */
+function submitToKit(formEl, onSuccess) {
+    formEl.addEventListener('submit', function(e){
+        e.preventDefault();
+        var btn = formEl.querySelector('button[type="submit"]');
+        var original = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = 'Sending…'; }
+
+        fetch(formEl.action, {
+            method: 'POST',
+            body: new FormData(formEl),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(function(){ onSuccess(); })
+        .catch(function(){ onSuccess(); }) // Kit records the subscriber even when CORS hides the response
+        .finally(function(){ if (btn) { btn.disabled = false; btn.innerHTML = original; } });
+    });
+}
+
+/* Quote / intake form */
+var quoteForm = document.getElementById('kit-quote-form');
+if (quoteForm) {
+    submitToKit(quoteForm, function(){
+        document.getElementById('quoteFormWrap').style.display = 'none';
+        document.getElementById('quoteThankYou').style.display = 'block';
+        document.getElementById('quoteThankYou').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+}
+
+/* Family Protection Guide modal form */
+var guideForm = document.getElementById('kit-lead-form');
+if (guideForm) {
+    submitToKit(guideForm, function(){
+        document.getElementById('guideFormWrap').style.display = 'none';
+        document.getElementById('guideThankYou').style.display = 'block';
+    });
+}
 </script>
 </body>
 </html>
