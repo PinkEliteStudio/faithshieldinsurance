@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FaithShield Insurance | Rhina Jasmyn</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Kit script loaded ONCE in head so it initializes before forms render -->
+<script src="https://call-to-more-2.kit.com/c428586e78/index.js" async></script>
+<script src="https://call-to-more-2.kit.com/2817ee547a/index.js" async></script>
+<script src="https://call-to-more-2.kit.com/c5f1ea7bde/index.js" async></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; }
@@ -24,7 +28,7 @@ nav { position: sticky; top: 0; background: #fff; padding: 15px 0; border-bottom
 .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 .video { padding: 70px 20px; background: #f8f8f8; text-align: center; }
 .video video { width: 100%; max-width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); background: #000; }
-.about, .faith, .solutions, .quote, .newsletter, .contact { padding: 70px 20px; }
+.about, .faith, .solutions, .guide, .quote, .newsletter, .contact { padding: 70px 20px; }
 .about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
 @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
 .about img { width: 100%; border-radius: 20px; border: 8px solid #f8c6dc; box-shadow: 0 10px 25px rgba(214,51,132,.15); }
@@ -36,15 +40,13 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 .faith .card h3 { color: #ffd700; margin-bottom: 12px; font-size: 1.25rem; }
 .solutions .card { background: linear-gradient(135deg, #ffe3ef, #ffd1e6); }
 .solutions .card:hover { background: linear-gradient(135deg, #d63384, #6a0d3a); color: white; transform: translateY(-8px); }
-.quote { background: linear-gradient(135deg, #fff5fa, #ffe3ef); }
-.quote-box { max-width: 720px; margin: auto; background: #fff; border-radius: 24px; padding: 40px 30px; box-shadow: 0 15px 40px rgba(214,51,132,.15); }
-.quote h2 { text-align: center; }
-.quote .sub { text-align: center; margin-bottom: 30px; font-size: 1.1rem; color: #555; }
+.guide { background:#000; color:#fff; text-align:center; }
+.guide .kit-wrap { max-width:600px; margin:25px auto 0; background:#fff; border-radius:16px; padding:14px; }
+.quote { background: linear-gradient(135deg, #fff5fa, #ffe3ef); text-align:center; }
+.quote .kit-wrap { max-width:720px; margin:25px auto 0; }
+.quote .sub { max-width:700px; margin:0 auto 10px; font-size: 1.1rem; color: #555; }
 .newsletter { background: linear-gradient(135deg, #d63384, #000); color: white; text-align: center; }
-.newsletter .nl-box { max-width: 600px; margin: 20px auto 0; background:#fff; border-radius:16px; padding:10px; }
-.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
-.modal-content { background: white; padding: 30px 20px; border-radius: 20px; width: 100%; max-width: 620px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; margin: auto; }
-.close { position: absolute; top: 15px; right: 25px; font-size: 36px; cursor: pointer; color: #b02a5b; z-index: 5; }
+.newsletter .kit-wrap { max-width: 600px; margin: 20px auto 0; background:#fff; border-radius:16px; padding:14px; }
 .footer { background: #000; color: white; text-align: center; padding: 40px 20px; }
 @media (max-width: 768px) {
     .nav-links { display: none; flex-direction: column; width: 100%; gap: 15px; margin-top: 15px; }
@@ -62,15 +64,15 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     <div class="logo">FaithShield<small>Insurance • Rhina Jasmyn</small></div>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <div class="nav-links" id="navLinks">
+        <a href="#guide">Free Guide</a>
         <a href="#about">My Story</a>
-        <a href="#faith">Faith Foundation</a>
         <a href="#solutions">Solutions</a>
         <a href="#quote">Get A Quote</a>
         <a href="#contact">Connect</a>
     </div>
     <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
         <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank">Book A Call</a>
-        <a class="btn" onclick="openModal()" style="background:#d63384;">Get FREE Guide</a>
+        <a class="btn" href="#guide" style="background:#d63384;">Get FREE Guide</a>
     </div>
 </div>
 </nav>
@@ -81,7 +83,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     <p>After walking through my own divorce and uncertainty, I now help families remove the fear of "What If" and protect what matters most.</p>
     <div class="hero-buttons">
         <a class="btn" href="#quote" style="background:#d63384;">Get My Personalized Quote</a>
-        <a class="btn" onclick="openModal()" style="border:2px solid white; background:transparent; color:white;">Get FREE Family Guide</a>
+        <a class="btn" href="#guide" style="border:2px solid white; background:transparent; color:white;">Get FREE Family Guide</a>
         <a class="btn book-btn" href="https://a.co/d/01Eoeb1b" target="_blank">Buy My Book</a>
     </div>
 </div>
@@ -90,6 +92,19 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 <div class="trust" style="padding:20px; background:#fafafa; text-align:center; font-weight:600; font-size:0.95rem;">
     Symmetry Licensed Partner • Faith Driven Guidance • No Pressure • Honest Advice
 </div>
+
+<!-- FREE GUIDE -> Kit form c428586e78 (now a visible section, not a hidden modal) -->
+<section id="guide" class="guide">
+<div class="container">
+    <h2 style="color:#fff;">Get Your Free Family Protection Guide</h2>
+    <p style="max-width:640px; margin:0 auto; font-size:1.1rem;">
+        <strong>Stop wondering "What if?"</strong> Enter your details below and I'll send your free guide right away.
+    </p>
+    <div class="kit-wrap">
+        <script async data-uid="c428586e78" src="https://call-to-more-2.kit.com/c428586e78/index.js"></script>
+    </div>
+</div>
+</section>
 
 <section id="about" class="about">
 <div class="container about-grid">
@@ -110,7 +125,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
         <source src="insurance video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video><br><br>
-    <a class="btn" onclick="openModal()" style="background:#d63384;">Get Your FREE Family Protection Guide</a>
+    <a class="btn" href="#guide" style="background:#d63384;">Get Your FREE Family Protection Guide</a>
 </div>
 </section>
 
@@ -139,23 +154,23 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 </div>
 </section>
 
-<!-- QUOTE FORM -> Kit form 9657802 (reliable embed) -->
+<!-- QUOTE -> Kit form 2817ee547a -->
 <section id="quote" class="quote">
 <div class="container">
-    <div class="quote-box">
-        <h2>Get My Personalized Quote</h2>
-        <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
+    <h2>Get My Personalized Quote</h2>
+    <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
+    <div class="kit-wrap">
         <script async data-uid="2817ee547a" src="https://call-to-more-2.kit.com/2817ee547a/index.js"></script>
     </div>
 </div>
 </section>
 
-<!-- NEWSLETTER -> Kit form 9657845 (reliable embed) -->
+<!-- NEWSLETTER -> Kit form c5f1ea7bde (this one worked before) -->
 <section class="newsletter">
 <div class="container">
     <h2>Get My Monthly Faith &amp; Finance Newsletter</h2>
     <p>Free, monthly, and practical — faith-driven wisdom on protecting your family and stewarding what God gave you.</p>
-    <div class="nl-box">
+    <div class="kit-wrap">
         <script async data-uid="c5f1ea7bde" src="https://call-to-more-2.kit.com/c5f1ea7bde/index.js"></script>
     </div>
 </div>
@@ -175,27 +190,11 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     Independent Insurance Agent • Licensed with Symmetry
 </footer>
 
-<!-- GUIDE MODAL -> Kit form 9657602 (reliable embed) -->
-<div id="leadModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>Get Your Free Family Protection Guide</h2>
-    <p style="text-align:center; margin-bottom:20px; font-size:17px;">
-      <strong>Stop wondering "What if?"</strong><br>
-      Enter your details and I'll send your free guide right away.
-    </p>
-    <script async data-uid="c428586e78" src="https://call-to-more-2.kit.com/c428586e78/index.js"></script>
-  </div>
-</div>
-
 <script>
 function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-function openModal() { document.getElementById('leadModal').style.display = 'flex'; }
-function closeModal() { document.getElementById('leadModal').style.display = 'none'; }
 document.querySelectorAll('.nav-links a').forEach(function(link){
     link.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('active'); });
 });
-document.getElementById('leadModal').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
 </script>
 </body>
 </html>
