@@ -233,51 +233,60 @@ document.getElementById('quoteForm').addEventListener('submit', function(e) {
     var form = e.target;
     var msg = document.getElementById('quoteFormMsg');
     var submitBtn = form.querySelector('button[type="submit"]');
+    var endpoint = 'https://api.hsforms.com/submissions/v3/integration/submit/247158863/9b1ffe7c-cde7-44ac-9e5b-fa34bc28d38d';
 
-    var fields = [
+    var coreFields = [
         { name: 'firstname', value: form.firstname.value },
         { name: 'lastname', value: form.lastname.value },
         { name: 'phone', value: form.phone.value },
+        { name: 'email', value: form.email.value }
+    ].filter(function(f) { return f.value; });
+
+    var extraFields = [
         { name: 'best_time_to_call', value: form.best_time_to_call.value },
-        { name: 'email', value: form.email.value },
         { name: 'date_of_birth', value: form.date_of_birth.value },
         { name: 'height', value: form.height.value },
         { name: 'weight', value: form.weight.value },
         { name: 'smoker', value: form.smoker.value }
     ].filter(function(f) { return f.value; });
 
-    var payload = {
-        fields: fields,
-        context: {
-            pageUri: window.location.href,
-            pageName: document.title
-        }
-    };
+    function submitFields(fields) {
+        return fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                fields: fields,
+                context: { pageUri: window.location.href, pageName: document.title }
+            })
+        });
+    }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
 
-    fetch('https://api.hsforms.com/submissions/v3/integration/submit/247158863/9b1ffe7c-cde7-44ac-9e5b-fa34bc28d38d', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    })
-    .then(function(res) {
-        if (res.ok) {
-            form.reset();
-            form.querySelectorAll('.form-field, .form-row, button').forEach(function(el){ el.style.display = 'none'; });
+    submitFields(coreFields.concat(extraFields))
+        .then(function(res) {
+            if (res.ok) { return true; }
+            // Retry with just the core fields we're certain about, in case a custom field name was rejected
+            return submitFields(coreFields).then(function(res2) { return res2.ok; });
+        })
+        .then(function(success) {
+            if (success) {
+                form.reset();
+                form.querySelectorAll('.form-field, .form-row, button').forEach(function(el){ el.style.display = 'none'; });
+                msg.style.color = '#b02a5b';
+                msg.textContent = "Thank you! I've received your information and will personally reach out within 24 hours.";
+            } else {
+                throw new Error('Both submission attempts failed');
+            }
+        })
+        .catch(function(err) {
+            console.error('Quote form submission error:', err);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
             msg.style.color = '#b02a5b';
-            msg.textContent = "Thank you! I've received your information and will personally reach out within 24 hours.";
-        } else {
-            throw new Error('Submission failed');
-        }
-    })
-    .catch(function() {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit';
-        msg.style.color = '#b02a5b';
-        msg.textContent = "Something went wrong sending this — please call or text (786) 385-7888 and I'll help you directly.";
-    });
+            msg.textContent = "Something went wrong sending this — please call or text (786) 385-7888 and I'll help you directly.";
+        });
 });
 </script>
 
