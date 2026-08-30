@@ -41,7 +41,13 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 .guide { background:#000; color:#fff; text-align:center; }
 .guide .kit-wrap { max-width:600px; margin:25px auto 0; background:#fff; border-radius:16px; padding:14px; }
 .quote { background: linear-gradient(135deg, #fff5fa, #ffe3ef); text-align:center; min-height: 900px; }
-.quote .form-wrap { max-width:720px; margin:25px auto 0; }
+.quote .form-wrap { max-width:720px; margin:25px auto 0; background:#fff; border-radius:20px; padding:35px; box-shadow: 0 10px 30px rgba(214,51,132,.12); text-align:left; }
+.native-quote-form .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 600px) { .native-quote-form .form-row { grid-template-columns: 1fr 1fr; } }
+.native-quote-form .form-field { margin-bottom: 16px; }
+.native-quote-form label { display: block; font-weight: 600; margin-bottom: 6px; color: #333; font-size: 0.95rem; }
+.native-quote-form input, .native-quote-form select { width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; font-family: 'Inter', sans-serif; }
+.native-quote-form input:focus, .native-quote-form select:focus { outline: none; border-color: #d63384; }
 .quote .sub { max-width:700px; margin:0 auto 10px; font-size: 1.1rem; color: #555; }
 .newsletter { background: linear-gradient(135deg, #d63384, #000); color: white; text-align: center; }
 .newsletter .kit-wrap { max-width: 600px; margin: 20px auto 0; background:#fff; border-radius:16px; padding:14px; }
@@ -158,26 +164,123 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 </div>
 </section>
 
-<!-- QUOTE -> Now using HubSpot form (portal 247158863) instead of Kit -->
+<!-- QUOTE -> Native form on our own site, submits directly to HubSpot's Forms API -->
 <section id="quote" class="quote">
 <div class="container">
     <h2>Get My Personalized Quote</h2>
     <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
     <div class="form-wrap">
-        <div id="hubspotForm"></div>
-        <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
-        <script>
-            window.addEventListener('DOMContentLoaded', function() {
-                if (window.hbspt) {
-                    hbspt.forms.create({
-                        portalId: "247158863",
-                        formId: "9b1ffe7c-cde7-44ac-9e5b-fa34bc28d38d",
-                        target: "#hubspotForm"
-                    });
-                }
-            });
-        </script>
+        <form id="quoteForm" class="native-quote-form">
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="q-firstname">First Name</label>
+                    <input type="text" id="q-firstname" name="firstname">
+                </div>
+                <div class="form-field">
+                    <label for="q-lastname">Last Name</label>
+                    <input type="text" id="q-lastname" name="lastname">
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="q-phone">Phone Number</label>
+                <input type="tel" id="q-phone" name="phone" placeholder="(555) 555-5555">
+            </div>
+            <div class="form-field">
+                <label for="q-besttime">Best time to call</label>
+                <select id="q-besttime" name="best_time_to_call">
+                    <option value="">Select one</option>
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Evening">Evening</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="q-email">Email *</label>
+                <input type="email" id="q-email" name="email" required>
+            </div>
+            <div class="form-field">
+                <label for="q-dob">Date of birth</label>
+                <input type="date" id="q-dob" name="date_of_birth">
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="q-height">Height</label>
+                    <input type="text" id="q-height" name="height" placeholder="e.g. 5'6&quot;">
+                </div>
+                <div class="form-field">
+                    <label for="q-weight">Weight</label>
+                    <input type="text" id="q-weight" name="weight" placeholder="e.g. 160 lbs">
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="q-smoker">Smoker</label>
+                <select id="q-smoker" name="smoker">
+                    <option value="">Select one</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" style="background:#d63384; width:100%; margin-top:10px;">Submit</button>
+            <p id="quoteFormMsg" style="margin-top:15px; font-weight:600;"></p>
+        </form>
     </div>
+</div>
+</section>
+
+<script>
+document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var msg = document.getElementById('quoteFormMsg');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    var fields = [
+        { name: 'firstname', value: form.firstname.value },
+        { name: 'lastname', value: form.lastname.value },
+        { name: 'phone', value: form.phone.value },
+        { name: 'best_time_to_call', value: form.best_time_to_call.value },
+        { name: 'email', value: form.email.value },
+        { name: 'date_of_birth', value: form.date_of_birth.value },
+        { name: 'height', value: form.height.value },
+        { name: 'weight', value: form.weight.value },
+        { name: 'smoker', value: form.smoker.value }
+    ].filter(function(f) { return f.value; });
+
+    var payload = {
+        fields: fields,
+        context: {
+            pageUri: window.location.href,
+            pageName: document.title
+        }
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/247158863/9b1ffe7c-cde7-44ac-9e5b-fa34bc28d38d', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(function(res) {
+        if (res.ok) {
+            form.reset();
+            form.querySelectorAll('.form-field, .form-row, button').forEach(function(el){ el.style.display = 'none'; });
+            msg.style.color = '#b02a5b';
+            msg.textContent = "Thank you! I've received your information and will personally reach out within 24 hours.";
+        } else {
+            throw new Error('Submission failed');
+        }
+    })
+    .catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+        msg.style.color = '#b02a5b';
+        msg.textContent = "Something went wrong sending this — please call or text (786) 385-7888 and I'll help you directly.";
+    });
+});
+</script>
+
 </div>
 </section>
 
