@@ -228,6 +228,12 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 </section>
 
 <script>
+// Reads a cookie value by name (used to grab HubSpot's visitor-tracking cookie)
+function getCookie(name) {
+    var match = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
+    return match ? decodeURIComponent(match[1]) : '';
+}
+
 document.getElementById('quoteForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var form = e.target;
@@ -250,13 +256,20 @@ document.getElementById('quoteForm').addEventListener('submit', function(e) {
         { name: 'smoker', value: form.smoker.value }
     ].filter(function(f) { return f.value; });
 
+    function buildContext() {
+        var context = { pageUri: window.location.href, pageName: document.title };
+        var hutk = getCookie('hubspotutk');
+        if (hutk) { context.hutk = hutk; }
+        return context;
+    }
+
     function submitFields(fields) {
         return fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 fields: fields,
-                context: { pageUri: window.location.href, pageName: document.title }
+                context: buildContext()
             })
         });
     }
