@@ -40,7 +40,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 .solutions .card:hover { background: linear-gradient(135deg, #d63384, #6a0d3a); color: white; transform: translateY(-8px); }
 .guide { background:#000; color:#fff; text-align:center; }
 .guide .kit-wrap { max-width:600px; margin:25px auto 0; background:#fff; border-radius:16px; padding:14px; }
-.quote { background: linear-gradient(135deg, #fff5fa, #ffe3ef); text-align:center; }
+.quote { background: linear-gradient(135deg, #fff5fa, #ffe3ef); text-align:center; min-height: 900px; }
 .quote .form-wrap { max-width:720px; margin:25px auto 0; }
 .quote .sub { max-width:700px; margin:0 auto 10px; font-size: 1.1rem; color: #555; }
 .newsletter { background: linear-gradient(135deg, #d63384, #000); color: white; text-align: center; }
@@ -164,7 +164,19 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     <h2>Get My Personalized Quote</h2>
     <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
     <div class="form-wrap">
-        <iframe src="https://435gzz.share-na2.hsforms.com/2mx_-fM3nRKyeW_o0vCjTjQ" style="width:100%; max-width:720px; height:1000px; border:none; display:block; margin:0 auto;" title="Get My Personalized Quote" loading="lazy"></iframe>
+        <div id="hubspotForm"></div>
+        <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+                if (window.hbspt) {
+                    hbspt.forms.create({
+                        portalId: "247158863",
+                        formId: "9b1ffe7c-cde7-44ac-9e5b-fa34bc28d38d",
+                        target: "#hubspotForm"
+                    });
+                }
+            });
+        </script>
     </div>
 </div>
 </section>
