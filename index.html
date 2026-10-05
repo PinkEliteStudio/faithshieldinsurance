@@ -343,5 +343,125 @@ document.querySelectorAll('.nav-links a').forEach(function(link){
     link.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('active'); });
 });
 </script>
+<!-- ===== Rhina's AI assistant chat bubble ===== -->
+<style>
+#fsb-btn{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:9998;display:flex;align-items:center;gap:10px;background:#d63384;color:#fff;border:0;border-radius:999px;padding:12px 18px 12px 12px;font:600 15px 'Inter',sans-serif;box-shadow:0 8px 24px rgba(214,51,132,.35);cursor:pointer}
+#fsb-btn .fsb-face{width:38px;height:38px;border-radius:50%;background:#fff;color:#d63384;display:grid;place-items:center;font:700 18px 'Playfair Display',serif}
+#fsb-btn .fsb-dot{position:absolute;top:6px;left:40px;width:12px;height:12px;border-radius:50%;background:#2ecc71;border:2px solid #fff}
+#fsb-nudge{position:fixed;right:18px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:9998;max-width:260px;background:#fff;color:#333;border-radius:16px 16px 4px 16px;padding:12px 14px;font:14px/1.45 'Inter',sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.15);cursor:pointer}
+#fsb-nudge button{position:absolute;top:2px;right:6px;background:none;border:0;font-size:16px;color:#999;cursor:pointer}
+#fsb-panel{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:9999;width:380px;max-width:calc(100vw - 24px);height:600px;max-height:calc(100vh - 40px);background:#fff;border-radius:22px;box-shadow:0 18px 50px rgba(176,42,91,.28);display:flex;flex-direction:column;overflow:hidden;font-family:'Inter',sans-serif}
+.fsb-hidden{display:none!important}
+.fsb-head{background:linear-gradient(135deg,#d63384,#b02a5b);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.fsb-head .fsb-face{width:40px;height:40px;border-radius:50%;background:#fff;color:#d63384;display:grid;place-items:center;font:700 19px 'Playfair Display',serif;flex:none}
+.fsb-head b{display:block;font-size:16px}.fsb-head small{opacity:.9;font-size:12px}
+.fsb-head .fsb-sp{flex:1}
+.fsb-head button{background:rgba(255,255,255,.18);border:0;color:#fff;border-radius:999px;padding:6px 10px;font:600 12px 'Inter',sans-serif;cursor:pointer}
+.fsb-head button.fsb-x{font-size:18px;padding:2px 10px}
+.fsb-log{flex:1;overflow-y:auto;padding:16px;background:#fff7fb;display:flex;flex-direction:column;gap:10px}
+.fsb-m{max-width:86%;padding:10px 13px;border-radius:16px;font-size:15px;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.fsb-m.bot{background:#fff;border:1px solid #f5d0e2;border-bottom-left-radius:5px;align-self:flex-start;color:#333}
+.fsb-m.me{background:#d63384;color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.fsb-typing{align-self:flex-start;background:#fff;border:1px solid #f5d0e2;border-radius:16px;padding:12px 14px}
+.fsb-typing i{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:#d63384;animation:fsb-b 1s infinite}
+.fsb-typing i:nth-child(2){animation-delay:.15s}.fsb-typing i:nth-child(3){animation-delay:.3s}
+@keyframes fsb-b{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+.fsb-quick{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start}
+.fsb-quick button{background:#fff;border:1.5px solid #d63384;color:#b02a5b;border-radius:999px;padding:7px 13px;font:600 14px 'Inter',sans-serif;cursor:pointer}
+.fsb-quick button:hover{background:#ffe3ef}
+.fsb-consent{align-self:stretch;background:#fff;border:1.5px solid #d63384;border-radius:14px;padding:12px;font-size:12.5px;line-height:1.45;color:#444}
+.fsb-consent a{color:#b02a5b}
+.fsb-consent .fsb-quick{margin-top:10px}
+.fsb-form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #f3d3e3;background:#fff}
+.fsb-form textarea{flex:1;resize:none;border:1px solid #e6c3d4;border-radius:14px;padding:10px 12px;font:15px 'Inter',sans-serif;max-height:110px;min-height:44px}
+.fsb-form textarea:focus{outline:none;border-color:#d63384}
+.fsb-form button{background:#d63384;color:#fff;border:0;border-radius:14px;padding:0 16px;font:700 15px 'Inter',sans-serif;cursor:pointer}
+.fsb-form button:disabled{opacity:.5}
+.fsb-foot{font-size:11px;color:#888;text-align:center;padding:0 12px 10px;background:#fff}
+.fsb-foot a{color:#b02a5b}
+@media (max-width:520px){#fsb-panel{right:0;bottom:0;width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0;padding-top:env(safe-area-inset-top,0px)}#fsb-btn .fsb-lbl{display:none}#fsb-btn{padding:10px}}
+</style>
+<div id="fsb-nudge" class="fsb-hidden" role="button" tabindex="0"><button type="button" aria-label="Close">×</button><span id="fsb-nudge-text"></span></div>
+<button type="button" id="fsb-btn" aria-label="Chat with Rhina's assistant"><span class="fsb-face">R</span><span class="fsb-dot"></span><span class="fsb-lbl" id="fsb-btn-lbl">Questions? Chat with us</span></button>
+<div id="fsb-panel" class="fsb-hidden" role="dialog" aria-label="Chat with Rhina's assistant">
+  <div class="fsb-head"><span class="fsb-face">R</span><div><b id="fsb-title">Rhina's Assistant</b><small id="fsb-sub">FaithShield Insurance · usually replies right away</small></div><span class="fsb-sp"></span>
+    <button type="button" id="fsb-lang" aria-label="Cambiar a español">Español</button><button type="button" class="fsb-x" id="fsb-close" aria-label="Close chat">×</button></div>
+  <div class="fsb-log" id="fsb-log" aria-live="polite"></div>
+  <form class="fsb-form" id="fsb-form"><textarea id="fsb-text" rows="1" placeholder="Type your message..." aria-label="Your message"></textarea><button type="submit" id="fsb-send">Send</button></form>
+  <div class="fsb-foot" id="fsb-foot"></div>
+</div>
+<script>
+(function(){
+  var API = "https://dreamteam-faithshield.netlify.app/.netlify/functions/chat-bot";
+  var KEY = "fsb_chat_v1";
+  var T = {
+    en: { lbl:"Questions? Chat with us", title:"Rhina's Assistant", sub:"FaithShield Insurance · usually replies right away", lang:"Español", ph:"Type your message...", send:"Send",
+      foot:'AI assistant for Rhina Delgado. Your info is never sold. <a href="privacy-policy.html">Privacy</a>',
+      nudge:"Hi! 👋 Want to know if your mortgage would get paid off when something happens to you?",
+      hi:"Hi! I'm Rhina's assistant 🙏\n\nI help homeowners see if their mortgage would get paid off when something happens to them, so the family keeps the house.\n\nWhat made you look into protecting your home today?",
+      quick:["I want to protect my home","I have a question","Just looking"], agree:"Yes, I agree", no:"No thanks",
+      agreed:"Yes, I agree to be contacted.", declined:"No thanks, please don't contact me.", err:"Sorry, I couldn't connect. Please call or text Rhina at (786) 385-7888 🙏" },
+    es: { lbl:"¿Preguntas? Escríbenos", title:"Asistente de Rhina", sub:"FaithShield Insurance · responde al instante", lang:"English", ph:"Escriba su mensaje...", send:"Enviar",
+      foot:'Asistente de IA de Rhina Delgado. Nunca vendemos su información. <a href="privacy-policy.html">Privacidad</a>',
+      nudge:"¡Hola! 👋 ¿Quiere saber si su hipoteca se pagaría cuando algo le pase?",
+      hi:"¡Hola! Soy la asistente de Rhina 🙏\n\nAyudo a los dueños de casa a ver si su hipoteca se pagaría cuando algo les pase, para que la familia se quede con la casa.\n\n¿Qué le hizo buscar protección para su casa hoy?",
+      quick:["Quiero proteger mi casa","Tengo una pregunta","Solo estoy mirando"], agree:"Sí, acepto", no:"No, gracias",
+      agreed:"Sí, acepto que me contacten.", declined:"No, gracias. Por favor no me contacten.", err:"Lo siento, no pude conectar. Llame o escriba a Rhina al (786) 385-7888 🙏" }
+  };
+  var S = load(); var busy = false;
+  var $ = function(id){ return document.getElementById(id); };
+  function load(){ try{ var s = JSON.parse(sessionStorage.getItem(KEY)); if(s && s.msgs) return s; }catch(e){} return { lang:(navigator.language||"").toLowerCase().indexOf("es")===0?"es":"en", msgs:[], saved:false, open:false }; }
+  function keep(){ try{ sessionStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  function t(){ return T[S.lang]; }
+  function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+  function paintLabels(){ var x=t(); $("fsb-btn-lbl").textContent=x.lbl; $("fsb-title").textContent=x.title; $("fsb-sub").textContent=x.sub; $("fsb-lang").textContent=x.lang;
+    $("fsb-lang").setAttribute("aria-label", S.lang==="en"?"Cambiar a español":"Switch to English"); $("fsb-text").placeholder=x.ph; $("fsb-send").textContent=x.send; $("fsb-foot").innerHTML=x.foot; $("fsb-nudge-text").textContent=x.nudge; }
+  function paint(){
+    var log=$("fsb-log"); log.innerHTML="";
+    log.appendChild(el("div","fsb-m bot",t().hi));
+    if(!S.msgs.length){ var q=el("div","fsb-quick"); t().quick.forEach(function(label){ var b=el("button",null,label); b.type="button"; b.onclick=function(){ send(label); }; q.appendChild(b); }); log.appendChild(q); }
+    S.msgs.forEach(function(m){ log.appendChild(el("div","fsb-m "+(m.role==="user"?"me":"bot"), m.content)); });
+    if(S.consentText && !S.consentDone){
+      var c=el("div","fsb-consent"); c.appendChild(el("div",null,S.consentText));
+      var p=el("div"); p.innerHTML='<a href="privacy-policy.html" target="_blank">Privacy policy</a> · <a href="opt-in.html" target="_blank">SMS &amp; Call Opt-In</a>'; c.appendChild(p);
+      var q2=el("div","fsb-quick"), yes=el("button",null,t().agree), no=el("button",null,t().no); yes.type=no.type="button";
+      yes.onclick=function(){ S.consentDone=true; send(t().agreed); }; no.onclick=function(){ S.consentDone=true; send(t().declined); };
+      q2.appendChild(yes); q2.appendChild(no); c.appendChild(q2); log.appendChild(c);
+    }
+    if(busy){ var ty=el("div","fsb-typing"); ty.innerHTML="<i></i><i></i><i></i>"; ty.setAttribute("aria-label","typing"); log.appendChild(ty); }
+    log.scrollTop=log.scrollHeight;
+  }
+  function openChat(){ S.open=true; keep(); $("fsb-panel").classList.remove("fsb-hidden"); $("fsb-btn").classList.add("fsb-hidden"); $("fsb-nudge").classList.add("fsb-hidden"); paint(); setTimeout(function(){ $("fsb-text").focus(); },50); }
+  function closeChat(){ S.open=false; keep(); $("fsb-panel").classList.add("fsb-hidden"); $("fsb-btn").classList.remove("fsb-hidden"); }
+  function send(text){
+    text=(text||"").trim(); if(!text || busy) return;
+    S.msgs.push({ role:"user", content:text }); keep(); busy=true; $("fsb-send").disabled=true; paint();
+    var history=[{ role:"assistant", content:t().hi }].concat(S.msgs).slice(-40);
+    fetch(API,{ method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({ messages:history, lead_saved:S.saved, lang:S.lang }) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        S.msgs.push({ role:"assistant", content:(d && d.reply) || t().err });
+        if(d && d.saved) S.saved=true;
+        if(d && d.consent && !S.saved){ S.consentText=d.consent_text; S.consentDone=false; }
+        if(d && d.saved){ S.consentText=null; }
+      })
+      .catch(function(){ S.msgs.push({ role:"assistant", content:t().err }); })
+      .then(function(){ busy=false; $("fsb-send").disabled=false; keep(); paint(); });
+  }
+  $("fsb-btn").onclick=openChat;
+  $("fsb-nudge").onclick=function(e){ if(e.target.tagName==="BUTTON"){ e.stopPropagation(); $("fsb-nudge").classList.add("fsb-hidden"); try{ sessionStorage.setItem(KEY+"_nudged","1"); }catch(_){} return; } openChat(); };
+  $("fsb-close").onclick=closeChat;
+  $("fsb-lang").onclick=function(){ S.lang = S.lang==="en"?"es":"en"; keep(); paintLabels(); paint(); };
+  $("fsb-form").onsubmit=function(e){ e.preventDefault(); var v=$("fsb-text").value; $("fsb-text").value=""; send(v); };
+  $("fsb-text").addEventListener("keydown",function(e){ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); $("fsb-form").requestSubmit ? $("fsb-form").requestSubmit() : $("fsb-form").onsubmit(e); } });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape" && S.open) closeChat(); });
+  paintLabels();
+  if(S.open) openChat();
+  else { var nudged=false; try{ nudged=sessionStorage.getItem(KEY+"_nudged")==="1"; }catch(_){}
+    if(!nudged) setTimeout(function(){ if(!S.open){ $("fsb-nudge").classList.remove("fsb-hidden"); try{ sessionStorage.setItem(KEY+"_nudged","1"); }catch(_){} } }, 8000); }
+})();
+</script>
+<!-- ===== end chat bubble ===== -->
+
 </body>
 </html>
