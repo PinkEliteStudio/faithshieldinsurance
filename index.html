@@ -103,7 +103,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     Symmetry Licensed Partner • Faith Driven Guidance • No Pressure • Honest Advice
 </div>
 
-<!-- FREE GUIDE -> Kit form c428586e78 (still on Kit — replace with HubSpot form when ready) -->
+<!-- FREE GUIDE -> Kit form c428586e78 (still on Kit) -->
 <section id="guide" class="guide">
 <div class="container">
     <h2 style="color:#fff;">Get Your Free Family Protection Guide</h2>
@@ -164,150 +164,112 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
 </div>
 </section>
 
-<!-- QUOTE -> Native form on our own site, submits directly to HubSpot's Forms API -->
+<!-- QUOTE -> Saves straight into Rhina's own CRM (Wellstead). No HubSpot. Oct 6, 2026 -->
 <section id="quote" class="quote">
 <div class="container">
     <h2>Get My Personalized Quote</h2>
-    <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options — no pressure, no obligation.</p>
+    <p class="sub">Answer a few quick questions and I'll personally review your situation and reach out within 24 hours with real options. No pressure, no obligation.</p>
     <div class="form-wrap">
-        <form id="quoteForm" class="native-quote-form">
+        <form id="quoteForm" class="native-quote-form" novalidate>
             <div class="form-row">
-                <div class="form-field">
-                    <label for="q-firstname">First Name</label>
-                    <input type="text" id="q-firstname" name="firstname">
-                </div>
-                <div class="form-field">
-                    <label for="q-lastname">Last Name</label>
-                    <input type="text" id="q-lastname" name="lastname">
-                </div>
-            </div>
-            <div class="form-field">
-                <label for="q-phone">Phone Number</label>
-                <input type="tel" id="q-phone" name="phone" placeholder="(555) 555-5555">
-            </div>
-            <div class="form-field">
-                <label for="q-besttime">Best time to call</label>
-                <select id="q-besttime" name="best_time_to_call">
-                    <option value="">Select one</option>
-                    <option value="Morning">Morning</option>
-                    <option value="Afternoon">Afternoon</option>
-                    <option value="Evening">Evening</option>
-                </select>
-            </div>
-            <div class="form-field">
-                <label for="q-email">Email *</label>
-                <input type="email" id="q-email" name="email" required>
-            </div>
-            <div class="form-field">
-                <label for="q-dob">Date of birth</label>
-                <input type="date" id="q-dob" name="date_of_birth">
+                <div class="form-field"><label for="q-first">First Name *</label><input type="text" id="q-first" name="first_name" autocomplete="given-name"></div>
+                <div class="form-field"><label for="q-last">Last Name *</label><input type="text" id="q-last" name="last_name" autocomplete="family-name"></div>
             </div>
             <div class="form-row">
-                <div class="form-field">
-                    <label for="q-height">Height</label>
-                    <input type="text" id="q-height" name="height" placeholder="e.g. 5'6&quot;">
-                </div>
-                <div class="form-field">
-                    <label for="q-weight">Weight</label>
-                    <input type="text" id="q-weight" name="weight" placeholder="e.g. 160 lbs">
-                </div>
+                <div class="form-field"><label for="q-phone">Phone Number *</label><input type="tel" id="q-phone" name="phone" placeholder="(239) 555-0123" autocomplete="tel"></div>
+                <div class="form-field"><label for="q-besttime">Best time to call</label>
+                    <select id="q-besttime" name="best_time"><option value="Morning">Morning</option><option value="Afternoon">Afternoon</option><option value="Evening">Evening</option></select></div>
             </div>
-            <div class="form-field">
-                <label for="q-smoker">Smoker</label>
-                <select id="q-smoker" name="smoker">
-                    <option value="">Select one</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
+            <div class="form-field"><label for="q-email">Email *</label><input type="email" id="q-email" name="email" placeholder="name@gmail.com" autocomplete="email" autocapitalize="off"></div>
+            <div class="form-row">
+                <div class="form-field"><label for="q-dob">Date of birth *</label><input type="date" id="q-dob" name="dob" autocomplete="bday"></div>
+                <div class="form-field"><label for="q-gender">Gender *</label>
+                    <select id="q-gender" name="gender"><option value="">Select one</option><option value="Female">Female</option><option value="Male">Male</option></select></div>
             </div>
-            <button type="submit" class="btn" style="background:#d63384; width:100%; margin-top:10px;">Submit</button>
-            <p style="margin-top:12px; font-size:0.85rem; color:#777;">By submitting, you agree to be contacted by phone, text, or email about your quote per our <a href="opt-in.html" style="color:#d63384;">SMS &amp; Call Opt-In</a> and <a href="privacy-policy.html" style="color:#d63384;">Privacy Policy</a>.</p>
-            <p id="quoteFormMsg" style="margin-top:15px; font-weight:600;"></p>
+            <div class="form-row">
+                <div class="form-field"><label for="q-hft">Height *</label>
+                    <div style="display:flex;gap:6px">
+                    <select id="q-hft" name="height_ft" aria-label="Height in feet"><option value="">Feet</option><option value="4">4 ft</option><option value="5">5 ft</option><option value="6">6 ft</option><option value="7">7 ft</option></select>
+                    <select id="q-hin" name="height_in" aria-label="Height in inches"><option value="">In</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select>
+                    </div></div>
+                <div class="form-field"><label for="q-weight">Weight (lbs) *</label><input type="text" id="q-weight" name="weight" inputmode="numeric" placeholder="160"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-field"><label for="q-smoker">Tobacco or nicotine (including vaping) *</label>
+                    <select id="q-smoker" name="smoker"><option value="">Select one</option><option value="No">No</option><option value="Yes">Yes</option></select></div>
+                <div class="form-field"><label for="q-kids">Children *</label>
+                    <select id="q-kids" name="children"><option value="">Select one</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+            </div>
+            <div class="form-field"><label for="q-zip">Home ZIP code *</label><input type="text" id="q-zip" name="zip" inputmode="numeric" maxlength="5" placeholder="34120" autocomplete="postal-code"></div>
+            <label style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:0.85rem;color:#555;line-height:1.45;border:1.5px solid #d63384;border-radius:12px;padding:12px;cursor:pointer">
+                <input type="checkbox" id="q-consent" name="consent" value="yes" style="margin-top:3px;width:18px;height:18px;accent-color:#d63384;flex:none">
+                <span id="q-consentText">I agree that Rhina Delgado / FaithShield Insurance may contact me by phone call, text message, and email about my quote, including by automated means, at the number and email I provided. Consent is not required to buy. Message and data rates may apply. Reply STOP to opt out.</span>
+            </label>
+            <p style="margin-top:8px;font-size:0.82rem;color:#777;">Your information goes into my own private system. It is never sold or shared with anyone for marketing. See our <a href="opt-in.html" style="color:#d63384;">SMS &amp; Call Opt-In</a> and <a href="privacy-policy.html" style="color:#d63384;">Privacy Policy</a>.</p>
+            <button type="submit" id="q-btn" class="btn" style="background:#d63384; width:100%; margin-top:10px;">See My Options</button>
+            <p id="quoteFormMsg" style="margin-top:15px; font-weight:600; color:#b02a5b;"></p>
         </form>
     </div>
 </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
-// Reads a cookie value by name (used to grab HubSpot's visitor-tracking cookie)
-function getCookie(name) {
-    var match = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
-    return match ? decodeURIComponent(match[1]) : '';
-}
-
-document.getElementById('quoteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var form = e.target;
-    var msg = document.getElementById('quoteFormMsg');
-    var submitBtn = form.querySelector('button[type="submit"]');
-    var endpoint = 'https://api.hsforms.com/submissions/v3/integration/submit/247158863/9b1ffe7c-cde7-44ac-9e5b-fa34bc28d38d';
-
-    var coreFields = [
-        { name: 'firstname', value: form.firstname.value },
-        { name: 'lastname', value: form.lastname.value },
-        { name: 'phone', value: form.phone.value },
-        { name: 'email', value: form.email.value }
-    ].filter(function(f) { return f.value; });
-
-    var extraFields = [
-        { name: 'best_time_to_call', value: form.best_time_to_call.value },
-        { name: 'date_of_birth', value: form.date_of_birth.value },
-        { name: 'height', value: form.height.value },
-        { name: 'weight', value: form.weight.value },
-        { name: 'smoker', value: form.smoker.value }
-    ].filter(function(f) { return f.value; });
-
-    function buildContext() {
-        var context = { pageUri: window.location.href, pageName: document.title };
-        var hutk = getCookie('hubspotutk');
-        if (hutk) { context.hutk = hutk; }
-        return context;
-    }
-
-    function submitFields(fields) {
-        return fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                fields: fields,
-                context: buildContext()
-            })
-        });
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-
-    submitFields(coreFields.concat(extraFields))
-        .then(function(res) {
-            if (res.ok) { return true; }
-            // Retry with just the core fields we're certain about, in case a custom field name was rejected
-            return submitFields(coreFields).then(function(res2) { return res2.ok; });
-        })
-        .then(function(success) {
-            if (success) {
-                form.reset();
-                form.querySelectorAll('.form-field, .form-row, button').forEach(function(el){ el.style.display = 'none'; });
-                msg.style.color = '#b02a5b';
-                msg.textContent = "Thank you! I've received your information and will personally reach out within 24 hours.";
-            } else {
-                throw new Error('Both submission attempts failed');
-            }
-        })
-        .catch(function(err) {
-            console.error('Quote form submission error:', err);
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit';
-            msg.style.color = '#b02a5b';
-            msg.textContent = "Something went wrong sending this — please call or text (786) 385-7888 and I'll help you directly.";
-        });
-});
+(function(){
+  var CRM = "https://dreamteam-faithshield.netlify.app";
+  var db = window.supabase ? window.supabase.createClient("https://jztahpvtzkakcdukodqx.supabase.co", "sb_publishable_AmlBDSiD3QTirLSLe9cADA_HSmpNiCf") : null;
+  var form = document.getElementById("quoteForm"), msg = document.getElementById("quoteFormMsg"), btn = document.getElementById("q-btn");
+  var dobEl = document.getElementById("q-dob"); var mx = new Date(); mx.setFullYear(mx.getFullYear()-18); dobEl.max = mx.toISOString().slice(0,10);
+  function ageFrom(dob){ var b=new Date(dob+"T00:00:00"), t=new Date(); var a=t.getFullYear()-b.getFullYear(); var m=t.getMonth()-b.getMonth(); if(m<0||(m===0&&t.getDate()<b.getDate())) a--; return a; }
+  function problem(f){
+    if(!f.first_name.trim() || !f.last_name.trim()) return ["q-first","Please add your first and last name."];
+    var d=(f.phone||"").replace(/\D/g,""); if(!(d.length===10||(d.length===11&&d[0]==="1"))) return ["q-phone","Please enter a 10-digit phone number."];
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(f.email)) return ["q-email","Please enter your email, like name@gmail.com."];
+    if(!f.dob) return ["q-dob","Please add your date of birth."];
+    var a=ageFrom(f.dob); if(isNaN(a)||a<18||a>100) return ["q-dob","Please check your date of birth."];
+    if(!f.gender) return ["q-gender","Please pick female or male."];
+    if(!f.height_ft||f.height_in==="") return ["q-hft","Please pick your height in feet and inches."];
+    var w=parseInt((f.weight||"").replace(/\D/g,""),10); if(!w||w<70||w>700) return ["q-weight","Please enter your weight in pounds."];
+    if(!f.smoker) return ["q-smoker","Please answer the tobacco or nicotine question."];
+    if(!f.children) return ["q-kids","Please tell Rhina if you have children."];
+    if(!/^\d{5}$/.test(f.zip.trim())) return ["q-zip","Please enter your 5-digit ZIP code."];
+    if(f.consent!=="yes") return ["q-consent","Please check the box so Rhina can contact you."];
+    return null;
+  }
+  form.addEventListener("submit", function(e){
+    e.preventDefault(); msg.textContent="";
+    var f={}; new FormData(form).forEach(function(v,k){ f[k]=String(v); }); f.consent=f.consent||""; f.email=(f.email||"").replace(/\s+/g,"").toLowerCase();
+    var p=problem(f);
+    if(p){ msg.textContent=p[1]; var el=document.getElementById(p[0]); if(el){ el.scrollIntoView({behavior:"smooth",block:"center"}); try{ el.focus({preventScroll:true}); }catch(_){} } return; }
+    if(!db){ msg.textContent="Something went wrong loading the form. Please call or text (239) 351-2878."; return; }
+    btn.disabled=true; btn.textContent="Sending...";
+    var age=ageFrom(f.dob), w=parseInt(f.weight.replace(/\D/g,""),10), height=f.height_ft+"'"+f.height_in+'"';
+    var parts=f.dob.split("-"), dobUS=parts[1]+"/"+parts[2]+"/"+parts[0];
+    var health="FAITHSHIELD WEBSITE QUOTE\nHEALTH INFO\nDate of birth: "+dobUS+" (age "+age+")\nGender: "+f.gender+"\nHeight: "+height+"\nWeight: "+w+" lbs\nTobacco/nicotine: "+f.smoker+"\nChildren: "+f.children;
+    var payload={ first_name:f.first_name.trim(), last_name:f.last_name.trim(), phone:f.phone.trim(), email:f.email, dob:f.dob, gender:f.gender,
+      height_ft:f.height_ft, height_in:f.height_in, weight:String(w), smoker:f.smoker, children:f.children, children_ages:"", address:"", city:"", zip:f.zip.trim(), state:"FL",
+      mortgage_amount:"", lender:"", co_borrower:"", best_time:f.best_time, message:health, consent:"yes",
+      consent_text:document.getElementById("q-consentText").textContent.trim(), height:height, age:String(age), src:"" };
+    db.rpc("submit_quote",{ p:payload }).then(function(r){
+      if(r.error) throw r.error;
+      var id=r.data;
+      if(id){
+        db.rpc("save_quote_extras",{ p_id:id, p:{ dob:dobUS, age:String(age), gender:f.gender, height:height, weight:w+" lbs", tobacco:f.smoker, children:f.children } }).then(function(){},function(){});
+        try{ fetch(CRM+"/.netlify/functions/notify-quote",{ method:"POST", mode:"no-cors", headers:{ "Content-Type":"text/plain" }, body:JSON.stringify({ id:id }) }).catch(function(){}); }catch(_){}
+      }
+      form.querySelectorAll(".form-field, .form-row, label, button, p:not(#quoteFormMsg)").forEach(function(el){ el.style.display="none"; });
+      msg.innerHTML="Thank you, "+f.first_name.trim().replace(/[<>&]/g,"")+"! I've received your information and will personally reach out within 24 hours from my business line, (239) 351-2878. 🙏<br><br><a class=\"btn\" href=\"https://calendly.com/faithshieldinsurance/30min\" target=\"_blank\" rel=\"noopener\" style=\"background:#d63384\">Rather pick an exact time? Book here</a>";
+      msg.scrollIntoView({behavior:"smooth",block:"center"});
+    }).catch(function(err){
+      console.error("Quote form error:",err);
+      btn.disabled=false; btn.textContent="See My Options";
+      msg.textContent="Something went wrong sending this. Please call or text (239) 351-2878 and I'll help you directly.";
+    });
+  });
+})();
 </script>
 
-</div>
-</section>
-
-<!-- NEWSLETTER -> Kit form c5f1ea7bde (still on Kit — replace with HubSpot form when ready) -->
+<!-- NEWSLETTER -> Kit form c5f1ea7bde (still on Kit) -->
 <section class="newsletter">
 <div class="container">
     <h2>Get My Monthly Faith &amp; Finance Newsletter</h2>
@@ -323,7 +285,7 @@ document.getElementById('quoteForm').addEventListener('submit', function(e) {
     <h2>Ready To Take The Next Step?</h2>
     <p>No sales pressure. Just honest conversation.</p><br>
     <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank">Book Zoom Call</a><br><br>
-    <a class="btn" href="tel:7863857888" style="background:#d63384;">Call Or Text (786) 385-7888</a>
+    <a class="btn" href="tel:+12393512878" style="background:#d63384;">Call Or Text (239) 351-2878</a>
 </div>
 </section>
 
@@ -400,13 +362,13 @@ document.querySelectorAll('.nav-links a').forEach(function(link){
       nudge:"Hi! 👋 Want to know if your mortgage would get paid off when something happens to you?",
       hi:"Hi! I'm Rhina's assistant 🙏\n\nI help homeowners see if their mortgage would get paid off when something happens to them, so the family keeps the house.\n\nWhat made you look into protecting your home today?",
       quick:["I want to protect my home","I have a question","Just looking"], agree:"Yes, I agree", no:"No thanks",
-      agreed:"Yes, I agree to be contacted.", declined:"No thanks, please don't contact me.", err:"Sorry, I couldn't connect. Please call or text Rhina at (786) 385-7888 🙏" },
+      agreed:"Yes, I agree to be contacted.", declined:"No thanks, please don't contact me.", err:"Sorry, I couldn't connect. Please call or text Rhina at (239) 351-2878 🙏" },
     es: { lbl:"¿Preguntas? Escríbenos", title:"Asistente de Rhina", sub:"FaithShield Insurance · responde al instante", lang:"English", ph:"Escriba su mensaje...", send:"Enviar",
       foot:'Asistente de IA de Rhina Delgado. Nunca vendemos su información. <a href="privacy-policy.html">Privacidad</a>',
       nudge:"¡Hola! 👋 ¿Quiere saber si su hipoteca se pagaría cuando algo le pase?",
       hi:"¡Hola! Soy la asistente de Rhina 🙏\n\nAyudo a los dueños de casa a ver si su hipoteca se pagaría cuando algo les pase, para que la familia se quede con la casa.\n\n¿Qué le hizo buscar protección para su casa hoy?",
       quick:["Quiero proteger mi casa","Tengo una pregunta","Solo estoy mirando"], agree:"Sí, acepto", no:"No, gracias",
-      agreed:"Sí, acepto que me contacten.", declined:"No, gracias. Por favor no me contacten.", err:"Lo siento, no pude conectar. Llame o escriba a Rhina al (786) 385-7888 🙏" }
+      agreed:"Sí, acepto que me contacten.", declined:"No, gracias. Por favor no me contacten.", err:"Lo siento, no pude conectar. Llame o escriba a Rhina al (239) 351-2878 🙏" }
   };
   var S = load(); var busy = false;
   var $ = function(id){ return document.getElementById(id); };
