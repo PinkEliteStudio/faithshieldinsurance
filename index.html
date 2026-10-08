@@ -202,10 +202,14 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
             </div>
             <div class="form-field"><label for="q-zip">Home ZIP code *</label><input type="text" id="q-zip" name="zip" inputmode="numeric" maxlength="5" placeholder="34120" autocomplete="postal-code"></div>
             <label style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:0.85rem;color:#555;line-height:1.45;border:1.5px solid #d63384;border-radius:12px;padding:12px;cursor:pointer">
-                <input type="checkbox" id="q-consent" name="consent" value="yes" style="margin-top:3px;width:18px;height:18px;accent-color:#d63384;flex:none">
-                <span id="q-consentText">I agree that Rhina Delgado / FaithShield Insurance may contact me by phone call, text message, and email about my quote, including by automated means, at the number and email I provided. Consent is not required to buy. Message and data rates may apply. Reply STOP to opt out.</span>
+                <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" style="margin-top:3px;width:18px;height:18px;accent-color:#d63384;flex:none">
+                <span id="q-smsText">Yes, I agree to receive text messages from FaithShield Insurance about my quote request, appointment scheduling and reminders, and follow-up on my coverage questions. Up to 4 messages per month. Message and data rates may apply. Reply HELP for help or STOP to opt out at any time. Consent is not a condition of purchase. <a href="privacy-policy.html" target="_blank" style="color:#d63384;">Privacy Policy</a> &amp; <a href="opt-in.html" target="_blank" style="color:#d63384;">Text Terms</a>. <i>(optional)</i></span>
             </label>
-            <p style="margin-top:8px;font-size:0.82rem;color:#777;">Your information goes into my own private system. It is never sold or shared with anyone for marketing. See our <a href="opt-in.html" style="color:#d63384;">SMS &amp; Call Opt-In</a> and <a href="privacy-policy.html" style="color:#d63384;">Privacy Policy</a>.</p>
+            <label style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:0.85rem;color:#555;line-height:1.45;border:1.5px solid #d63384;border-radius:12px;padding:12px;cursor:pointer">
+                <input type="checkbox" id="call_consent" name="call_consent" value="yes" style="margin-top:3px;width:18px;height:18px;accent-color:#d63384;flex:none">
+                <span id="q-callText">Yes, Rhina Delgado of FaithShield Insurance may call me at the number above about my quote, including voicemail messages that may be prerecorded. Consent is not a condition of purchase. <i>(optional)</i></span>
+            </label>
+            <p style="margin-top:8px;font-size:0.82rem;color:#777;">Your information goes into my own private system. It is never sold or shared with anyone for marketing. See our <a href="opt-in.html" style="color:#d63384;">Text Terms</a> and <a href="privacy-policy.html" style="color:#d63384;">Privacy Policy</a>.</p>
             <button type="submit" id="q-btn" class="btn" style="background:#d63384; width:100%; margin-top:10px;">See My Options</button>
             <p id="quoteFormMsg" style="margin-top:15px; font-weight:600; color:#b02a5b;"></p>
         </form>
@@ -233,7 +237,6 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     if(!f.smoker) return ["q-smoker","Please answer the tobacco or nicotine question."];
     if(!f.children) return ["q-kids","Please tell Rhina if you have children."];
     if(!/^\d{5}$/.test(f.zip.trim())) return ["q-zip","Please enter your 5-digit ZIP code."];
-    if(f.consent!=="yes") return ["q-consent","Please check the box so Rhina can contact you."];
     return null;
   }
   form.addEventListener("submit", function(e){
@@ -245,11 +248,12 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     btn.disabled=true; btn.textContent="Sending...";
     var age=ageFrom(f.dob), w=parseInt(f.weight.replace(/\D/g,""),10), height=f.height_ft+"'"+f.height_in+'"';
     var parts=f.dob.split("-"), dobUS=parts[1]+"/"+parts[2]+"/"+parts[0];
-    var health="FAITHSHIELD WEBSITE QUOTE\nHEALTH INFO\nDate of birth: "+dobUS+" (age "+age+")\nGender: "+f.gender+"\nHeight: "+height+"\nWeight: "+w+" lbs\nTobacco/nicotine: "+f.smoker+"\nChildren: "+f.children;
+    var smsY=(f.sms_consent==="yes"), callY=(f.call_consent==="yes");
+    var health="FAITHSHIELD WEBSITE QUOTE\nCONTACT CONSENT\nTexts: "+(smsY?"Yes":"No")+"\nCalls incl. prerecorded voicemail: "+(callY?"Yes":"No")+"\n\nHEALTH INFO\nDate of birth: "+dobUS+" (age "+age+")\nGender: "+f.gender+"\nHeight: "+height+"\nWeight: "+w+" lbs\nTobacco/nicotine: "+f.smoker+"\nChildren: "+f.children;
     var payload={ first_name:f.first_name.trim(), last_name:f.last_name.trim(), phone:f.phone.trim(), email:f.email, dob:f.dob, gender:f.gender,
       height_ft:f.height_ft, height_in:f.height_in, weight:String(w), smoker:f.smoker, children:f.children, children_ages:"", address:"", city:"", zip:f.zip.trim(), state:"FL",
-      mortgage_amount:"", lender:"", co_borrower:"", best_time:f.best_time, message:health, consent:"yes",
-      consent_text:document.getElementById("q-consentText").textContent.trim(), height:height, age:String(age), src:"" };
+      mortgage_amount:"", lender:"", co_borrower:"", best_time:f.best_time, message:health, consent:"yes", sms_consent:(smsY?"yes":"no"), call_consent:(callY?"yes":"no"),
+      consent_text:"Quote request submitted on "+new Date().toISOString()+". TEXT MESSAGES: "+(smsY?"YES":"NO")+" ("+document.getElementById("q-smsText").textContent.trim()+") CALLS/PRERECORDED VOICEMAIL: "+(callY?"YES":"NO")+" ("+document.getElementById("q-callText").textContent.trim()+")", height:height, age:String(age), src:"" };
     db.rpc("submit_quote",{ p:payload }).then(function(r){
       if(r.error) throw r.error;
       var id=r.data;
@@ -295,7 +299,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     <div class="social-links">
         <a href="https://www.tiktok.com/@rhina.life.insurance" target="_blank">TikTok</a>
         <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="opt-in.html">SMS &amp; Call Opt-In</a>
+        <a href="opt-in.html">Text Terms &amp; Opt-In</a>
     </div>
 </footer>
 
@@ -385,7 +389,7 @@ document.querySelectorAll('.nav-links a').forEach(function(link){
     S.msgs.forEach(function(m){ log.appendChild(el("div","fsb-m "+(m.role==="user"?"me":"bot"), m.content)); });
     if(S.consentText && !S.consentDone){
       var c=el("div","fsb-consent"); c.appendChild(el("div",null,S.consentText));
-      var p=el("div"); p.innerHTML='<a href="privacy-policy.html" target="_blank">Privacy policy</a> · <a href="opt-in.html" target="_blank">SMS &amp; Call Opt-In</a>'; c.appendChild(p);
+      var p=el("div"); p.innerHTML='<a href="privacy-policy.html" target="_blank">Privacy policy</a> · <a href="opt-in.html" target="_blank">Text Terms &amp; Opt-In</a>'; c.appendChild(p);
       var q2=el("div","fsb-quick"), yes=el("button",null,t().agree), no=el("button",null,t().no); yes.type=no.type="button";
       yes.onclick=function(){ S.consentDone=true; send(t().agreed); }; no.onclick=function(){ S.consentDone=true; send(t().declined); };
       q2.appendChild(yes); q2.appendChild(no); c.appendChild(q2); log.appendChild(c);
