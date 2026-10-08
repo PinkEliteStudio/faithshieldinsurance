@@ -258,6 +258,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
       if(r.error) throw r.error;
       var id=r.data;
       if(id){
+        db.rpc("save_contact_consent",{ p_id:String(id), p_sms:payload.sms_consent, p_call:payload.call_consent, p_text:payload.consent_text }).then(function(){},function(){});
         db.rpc("save_quote_extras",{ p_id:id, p:{ dob:dobUS, age:String(age), gender:f.gender, height:height, weight:w+" lbs", tobacco:f.smoker, children:f.children } }).then(function(){},function(){});
         try{ fetch(CRM+"/.netlify/functions/notify-quote",{ method:"POST", mode:"no-cors", headers:{ "Content-Type":"text/plain" }, body:JSON.stringify({ id:id }) }).catch(function(){}); }catch(_){}
       }
