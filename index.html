@@ -200,6 +200,8 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
                 <div class="form-field"><label for="q-kids">Children *</label>
                     <select id="q-kids" name="children"><option value="">Select one</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
             </div>
+            <div class="form-field"><label for="q-home">Do you own your home? *</label>
+                <select id="q-home" name="home_status"><option value="">Select one</option><option value="Yes, with a mortgage">Yes, with a mortgage</option><option value="Yes, it's paid off">Yes, it's paid off</option><option value="No, I rent">No, I rent</option></select></div>
             <div class="form-field"><label for="q-zip">Home ZIP code *</label><input type="text" id="q-zip" name="zip" inputmode="numeric" maxlength="5" placeholder="34120" autocomplete="postal-code"></div>
             <label style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:0.85rem;color:#555;line-height:1.45;border:1.5px solid #d63384;border-radius:12px;padding:12px;cursor:pointer">
                 <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" style="margin-top:3px;width:18px;height:18px;accent-color:#d63384;flex:none">
@@ -225,6 +227,16 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
   var form = document.getElementById("quoteForm"), msg = document.getElementById("quoteFormMsg"), btn = document.getElementById("q-btn");
   var dobEl = document.getElementById("q-dob"); var mx = new Date(); mx.setFullYear(mx.getFullYear()-18); dobEl.max = mx.toISOString().slice(0,10);
   function ageFrom(dob){ var b=new Date(dob+"T00:00:00"), t=new Date(); var a=t.getFullYear()-b.getFullYear(); var m=t.getMonth()-b.getMonth(); if(m<0||(m===0&&t.getDate()<b.getDate())) a--; return a; }
+function qualifyLead(age, home, zip){
+  var z = parseInt(String(zip||"").slice(0,3),10);
+  if(home==="No, I rent") return ["no","Rents, no home to protect"];
+  if(age < 25) return ["no","Under 25"];
+  if(age > 70) return ["no","Over 70"];
+  if(home==="Yes, it's paid off") return ["maybe","Home is paid off, life insurance fit"];
+  if(age > 60) return ["maybe","Age 61 to 70, smaller term or final expense"];
+  if(!(z>=320 && z<=349)) return ["maybe","ZIP looks outside Florida"];
+  return ["yes","Florida homeowner with a mortgage, age 25 to 60"];
+}
   function problem(f){
     if(!f.first_name.trim() || !f.last_name.trim()) return ["q-first","Please add your first and last name."];
     var d=(f.phone||"").replace(/\D/g,""); if(!(d.length===10||(d.length===11&&d[0]==="1"))) return ["q-phone","Please enter a 10-digit phone number."];
@@ -237,6 +249,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     if(!f.smoker) return ["q-smoker","Please answer the tobacco or nicotine question."];
     if(!f.children) return ["q-kids","Please tell Rhina if you have children."];
     if(!/^\d{5}$/.test(f.zip.trim())) return ["q-zip","Please enter your 5-digit ZIP code."];
+    if(!f.home_status) return ["q-home","Please tell Rhina if you own your home."];
     return null;
   }
   form.addEventListener("submit", function(e){
@@ -249,7 +262,8 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
     var age=ageFrom(f.dob), w=parseInt(f.weight.replace(/\D/g,""),10), height=f.height_ft+"'"+f.height_in+'"';
     var parts=f.dob.split("-"), dobUS=parts[1]+"/"+parts[2]+"/"+parts[0];
     var smsY=(f.sms_consent==="yes"), callY=(f.call_consent==="yes");
-    var health="FAITHSHIELD WEBSITE QUOTE\nCONTACT CONSENT\nTexts: "+(smsY?"Yes":"No")+"\nCalls incl. prerecorded voicemail: "+(callY?"Yes":"No")+"\n\nHEALTH INFO\nDate of birth: "+dobUS+" (age "+age+")\nGender: "+f.gender+"\nHeight: "+height+"\nWeight: "+w+" lbs\nTobacco/nicotine: "+f.smoker+"\nChildren: "+f.children;
+    var qual=qualifyLead(age, f.home_status, f.zip);
+    var health="FAITHSHIELD WEBSITE QUOTE\nHOME: "+f.home_status+"\nFIT: "+(qual[0]==="yes"?"Qualified":qual[0]==="maybe"?"Maybe":"Not a fit")+" ("+qual[1]+")\nCONTACT CONSENT\nTexts: "+(smsY?"Yes":"No")+"\nCalls incl. prerecorded voicemail: "+(callY?"Yes":"No")+"\n\nHEALTH INFO\nDate of birth: "+dobUS+" (age "+age+")\nGender: "+f.gender+"\nHeight: "+height+"\nWeight: "+w+" lbs\nTobacco/nicotine: "+f.smoker+"\nChildren: "+f.children;
     var payload={ first_name:f.first_name.trim(), last_name:f.last_name.trim(), phone:f.phone.trim(), email:f.email, dob:f.dob, gender:f.gender,
       height_ft:f.height_ft, height_in:f.height_in, weight:String(w), smoker:f.smoker, children:f.children, children_ages:"", address:"", city:"", zip:f.zip.trim(), state:"FL",
       mortgage_amount:"", lender:"", co_borrower:"", best_time:f.best_time, message:health, consent:"yes", sms_consent:(smsY?"yes":"no"), call_consent:(callY?"yes":"no"),
@@ -258,6 +272,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 2.8rem)
       if(r.error) throw r.error;
       var id=r.data;
       if(id){
+        db.rpc("save_qualify",{ p_id:String(id), p_home:f.home_status, p_q:qual[0], p_reason:qual[1] }).then(function(){},function(){});
         db.rpc("save_contact_consent",{ p_id:String(id), p_sms:payload.sms_consent, p_call:payload.call_consent, p_text:payload.consent_text }).then(function(){},function(){});
         db.rpc("save_quote_extras",{ p_id:id, p:{ dob:dobUS, age:String(age), gender:f.gender, height:height, weight:w+" lbs", tobacco:f.smoker, children:f.children } }).then(function(){},function(){});
         try{ fetch(CRM+"/.netlify/functions/notify-quote",{ method:"POST", mode:"no-cors", headers:{ "Content-Type":"text/plain" }, body:JSON.stringify({ id:id }) }).catch(function(){}); }catch(_){}
