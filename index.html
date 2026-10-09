@@ -252,12 +252,13 @@ function qualifyLead(age, home, zip){
     if(!f.home_status) return ["q-home","Please tell Rhina if you own your home."];
     return null;
   }
+  function reqCode(id){ var s=String(id||"").replace(/-/g,""); return "FS-"+(/^\d+$/.test(s)?("0000"+s).slice(-4):s.slice(0,4).toUpperCase()); }
   form.addEventListener("submit", function(e){
     e.preventDefault(); msg.textContent="";
     var f={}; new FormData(form).forEach(function(v,k){ f[k]=String(v); }); f.consent=f.consent||""; f.email=(f.email||"").replace(/\s+/g,"").toLowerCase();
     var p=problem(f);
     if(p){ msg.textContent=p[1]; var el=document.getElementById(p[0]); if(el){ el.scrollIntoView({behavior:"smooth",block:"center"}); try{ el.focus({preventScroll:true}); }catch(_){} } return; }
-    if(!db){ msg.textContent="Something went wrong loading the form. Please call or text (239) 351-2878."; return; }
+    if(!db){ msg.textContent="Something went wrong loading the form. Please call or text (239) 451-5994."; return; }
     btn.disabled=true; btn.textContent="Sending...";
     var age=ageFrom(f.dob), w=parseInt(f.weight.replace(/\D/g,""),10), height=f.height_ft+"'"+f.height_in+'"';
     var parts=f.dob.split("-"), dobUS=parts[1]+"/"+parts[2]+"/"+parts[0];
@@ -278,12 +279,18 @@ function qualifyLead(age, home, zip){
         try{ fetch(CRM+"/.netlify/functions/notify-quote",{ method:"POST", mode:"no-cors", headers:{ "Content-Type":"text/plain" }, body:JSON.stringify({ id:id }) }).catch(function(){}); }catch(_){}
       }
       form.querySelectorAll(".form-field, .form-row, label, button, p:not(#quoteFormMsg)").forEach(function(el){ el.style.display="none"; });
-      msg.innerHTML="Thank you, "+f.first_name.trim().replace(/[<>&]/g,"")+"! I've received your information and will personally reach out within 24 hours from my business line, (239) 351-2878. 🙏<br><br><a class=\"btn\" href=\"https://calendly.com/faithshieldinsurance/30min\" target=\"_blank\" rel=\"noopener\" style=\"background:#d63384\">Rather pick an exact time? Book here</a>";
+      var code=reqCode(id);
+      var vc=["BEGIN:VCARD","VERSION:3.0","N:Delgado;Rhina;;;","FN:Rhina Delgado - FaithShield Insurance","ORG:FaithShield Insurance","TITLE:Licensed Insurance Agent","TEL;TYPE=WORK,VOICE:+1"+"239"+"4515994","EMAIL:rhina@faithshieldlife.com","URL:https://faithshieldinsurance.netlify.app","END:VCARD"].join("\r\n");
+      msg.innerHTML="<div style=\"text-align:center\"><div style=\"font-size:1.4rem;font-weight:800;color:#a61e66\">Thank you, "+f.first_name.trim().replace(/[<>&]/g,"")+"! 🙏</div>"+
+        (id?"<p style=\"margin:10px 0 4px\">Your request is in. This is your request code:</p><div style=\"display:inline-block;margin:6px 0;padding:10px 18px;border:2px dashed #d63384;border-radius:14px;font-weight:800;font-size:1.5rem;letter-spacing:.08em;color:#a61e66;background:#fff\">"+code+"</div><p style=\"font-size:.9rem;opacity:.8;margin:4px 0 0\">When I call, I'll say this code so you know it's me.</p>":"<p>Your request is in.</p>")+
+        "<div style=\"margin:16px auto 0;max-width:380px;background:#FFF0F6;border-radius:16px;padding:14px 16px;text-align:left\"><img src=\"Rhinajasmynpicture.jpg\" alt=\"Rhina Delgado\" onerror=\"this.remove()\" style=\"width:56px;height:56px;border-radius:50%;object-fit:cover;float:left;margin:0 12px 6px 0\"><b style=\"color:#a61e66\">Save my number so you don't miss my call:</b><br>(239) 451-5994<br><span style=\"font-size:.85rem\">I'll reach out within 24 hours.</span>"+
+        "<a class=\"btn\" download=\"Rhina-FaithShield.vcf\" href=\"data:text/vcard;charset=utf-8,"+encodeURIComponent(vc)+"\" style=\"display:block;clear:both;text-align:center;margin-top:12px;background:#d63384\">📇 Save Rhina to my contacts</a></div>"+
+        "<p style=\"margin-top:16px\"><a class=\"btn\" href=\"https://calendly.com/faithshieldinsurance/30min\" target=\"_blank\" rel=\"noopener\" style=\"background:#d63384\">Rather pick an exact time? Book here</a></p></div>";
       msg.scrollIntoView({behavior:"smooth",block:"center"});
     }).catch(function(err){
       console.error("Quote form error:",err);
       btn.disabled=false; btn.textContent="See My Options";
-      msg.textContent="Something went wrong sending this. Please call or text (239) 351-2878 and I'll help you directly.";
+      msg.textContent="Something went wrong sending this. Please call or text (239) 451-5994 and I'll help you directly.";
     });
   });
 })();
@@ -305,7 +312,7 @@ function qualifyLead(age, home, zip){
     <h2>Ready To Take The Next Step?</h2>
     <p>No sales pressure. Just honest conversation.</p><br>
     <a class="btn" href="https://calendly.com/faithshieldinsurance" target="_blank">Book Zoom Call</a><br><br>
-    <a class="btn" href="tel:+12393512878" style="background:#d63384;">Call Or Text (239) 351-2878</a>
+    <a class="btn" href="tel:+12394515994" style="background:#d63384;">Call Or Text (239) 451-5994</a>
 </div>
 </section>
 
@@ -382,13 +389,13 @@ document.querySelectorAll('.nav-links a').forEach(function(link){
       nudge:"Hi! 👋 Want to know if your mortgage would get paid off when something happens to you?",
       hi:"Hi! I'm Rhina's assistant 🙏\n\nI help homeowners see if their mortgage would get paid off when something happens to them, so the family keeps the house.\n\nWhat made you look into protecting your home today?",
       quick:["I want to protect my home","I have a question","Just looking"], agree:"Yes, I agree", no:"No thanks",
-      agreed:"Yes, I agree to be contacted.", declined:"No thanks, please don't contact me.", err:"Sorry, I couldn't connect. Please call or text Rhina at (239) 351-2878 🙏" },
+      agreed:"Yes, I agree to be contacted.", declined:"No thanks, please don't contact me.", err:"Sorry, I couldn't connect. Please call or text Rhina at (239) 451-5994 🙏" },
     es: { lbl:"¿Preguntas? Escríbenos", title:"Asistente de Rhina", sub:"FaithShield Insurance · responde al instante", lang:"English", ph:"Escriba su mensaje...", send:"Enviar",
       foot:'Asistente de IA de Rhina Delgado. Nunca vendemos su información. <a href="privacy-policy.html">Privacidad</a>',
       nudge:"¡Hola! 👋 ¿Quiere saber si su hipoteca se pagaría cuando algo le pase?",
       hi:"¡Hola! Soy la asistente de Rhina 🙏\n\nAyudo a los dueños de casa a ver si su hipoteca se pagaría cuando algo les pase, para que la familia se quede con la casa.\n\n¿Qué le hizo buscar protección para su casa hoy?",
       quick:["Quiero proteger mi casa","Tengo una pregunta","Solo estoy mirando"], agree:"Sí, acepto", no:"No, gracias",
-      agreed:"Sí, acepto que me contacten.", declined:"No, gracias. Por favor no me contacten.", err:"Lo siento, no pude conectar. Llame o escriba a Rhina al (239) 351-2878 🙏" }
+      agreed:"Sí, acepto que me contacten.", declined:"No, gracias. Por favor no me contacten.", err:"Lo siento, no pude conectar. Llame o escriba a Rhina al (239) 451-5994 🙏" }
   };
   var S = load(); var busy = false;
   var $ = function(id){ return document.getElementById(id); };
