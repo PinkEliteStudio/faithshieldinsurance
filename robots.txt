@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you
+Disallow: /Insurance%20Quote%20Intake
+
+Sitemap: https://faithshieldinsurance.netlify.app/sitemap.xml
