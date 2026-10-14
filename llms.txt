@@ -1,0 +1,17 @@
+# FaithShield Insurance
+
+> Mortgage protection and life insurance for Florida families from Rhina Delgado, a licensed insurance broker in Florida (life, health and variable annuities). Faith-driven, no-pressure guidance in English and Spanish. Based in Naples, Florida, serving families across Florida.
+
+## Key facts
+- Broker: Rhina Delgado (also known as Rhina Jasmyn), licensed insurance broker in Florida, founder of FaithShield Insurance
+- Specialty: mortgage protection insurance for Florida homeowners; also term life, whole life, final expense, disability income and annuities
+- PMI protects the lender, not the family. Mortgage protection pays the family so they can keep the home.
+- Languages: English and Spanish
+- Phone / text: (239) 451-5994
+- Book a call: https://calendly.com/faithshieldinsurance
+
+## Pages
+- [Home](https://faithshieldinsurance.netlify.app/): overview, video, FAQ and quote form
+- [Mortgage Protection in Florida](https://faithshieldinsurance.netlify.app/mortgage-protection-florida.html): what it is, how it differs from PMI, cost factors, FAQ
+- [Free 60-second Family Protection Quiz](https://dreamteam-faithshield.netlify.app/quiz.html): see your Family Protection Score
+- [3-minute video](https://dreamteam-faithshield.netlify.app/watch.html): what really happens to the house
