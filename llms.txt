@@ -15,3 +15,10 @@
 - [Mortgage Protection in Florida](https://faithshieldinsurance.netlify.app/mortgage-protection-florida.html): what it is, how it differs from PMI, cost factors, FAQ
 - [Free 60-second Family Protection Quiz](https://dreamteam-faithshield.netlify.app/quiz.html): see your Family Protection Score
 - [3-minute video](https://dreamteam-faithshield.netlify.app/watch.html): what really happens to the house
+
+## Answers
+- [What happens to my mortgage when my spouse dies in Florida](https://faithshieldinsurance.netlify.app/answers/what-happens-to-my-mortgage-when-my-spouse-dies-florida.html)
+- [Does PMI pay off my house when I die](https://faithshieldinsurance.netlify.app/answers/does-pmi-pay-off-my-house-when-i-die.html)
+- [Does my life insurance through work cover my mortgage](https://faithshieldinsurance.netlify.app/answers/does-life-insurance-through-work-cover-my-mortgage.html)
+- [How much life insurance do I need to pay off my house (calculator)](https://faithshieldinsurance.netlify.app/answers/how-much-life-insurance-to-pay-off-my-house.html)
+- [Can I get mortgage protection with health problems](https://faithshieldinsurance.netlify.app/answers/can-i-get-mortgage-protection-with-health-problems.html)

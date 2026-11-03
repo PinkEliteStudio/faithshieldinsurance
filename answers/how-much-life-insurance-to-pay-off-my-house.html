@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much Life Insurance Do I Need to Pay Off My House? | FaithShield Insurance</title>
+<meta name="description" content="A simple Florida calculator: your mortgage balance, a cushion for bills, and the years left on your loan. See a starting coverage amount in 30 seconds.">
+<link rel="canonical" href="https://faithshieldinsurance.netlify.app/answers/how-much-life-insurance-to-pay-off-my-house.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#d63384">
+<link rel="icon" type="image/png" href="../Faithshieldlogo.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FaithShield Insurance">
+<meta property="og:title" content="How Much Life Insurance Do I Need to Pay Off My House?">
+<meta property="og:description" content="A simple Florida calculator: your mortgage balance, a cushion for bills, and the years left on your loan. See a starting coverage amount in 30 seconds.">
+<meta property="og:url" content="https://faithshieldinsurance.netlify.app/answers/how-much-life-insurance-to-pay-off-my-house.html">
+<meta property="og:image" content="https://faithshieldinsurance.netlify.app/funnel-video-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="answers.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "How Much Life Insurance Do I Need to Pay Off My House?", "description": "A simple Florida calculator: your mortgage balance, a cushion for bills, and the years left on your loan. See a starting coverage amount in 30 seconds.", "author": {"@type": "Person", "name": "Rhina Jasmyn", "jobTitle": "Licensed Insurance Broker in Florida", "url": "https://faithshieldinsurance.netlify.app/"}, "publisher": {"@type": "Organization", "name": "FaithShield Insurance", "logo": {"@type": "ImageObject", "url": "https://faithshieldinsurance.netlify.app/Faithshieldlogo.png"}}, "datePublished": "2026-11-03", "dateModified": "2026-11-03", "mainEntityOfPage": "https://faithshieldinsurance.netlify.app/answers/how-much-life-insurance-to-pay-off-my-house.html", "image": "https://faithshieldinsurance.netlify.app/funnel-video-poster.jpg"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://faithshieldinsurance.netlify.app/"}, {"@type": "ListItem", "position": 2, "name": "Answers", "item": "https://faithshieldinsurance.netlify.app/answers/"}, {"@type": "ListItem", "position": 3, "name": "How Much Life Insurance Do I Need to Pay Off My House?", "item": "https://faithshieldinsurance.netlify.app/answers/how-much-life-insurance-to-pay-off-my-house.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should the coverage equal my mortgage balance exactly?", "acceptedAnswer": {"@type": "Answer", "text": "That is the minimum most families start with. A cushion for bills gives your family time to grieve instead of rushing to sell."}}, {"@type": "Question", "name": "Does the coverage go down as I pay the mortgage?", "acceptedAnswer": {"@type": "Answer", "text": "Not with a policy you own. Many term plans stay level, so the money left after the house is paid goes to your family."}}, {"@type": "Question", "name": "Do I need a medical exam?", "acceptedAnswer": {"@type": "Answer", "text": "Many plans have no medical exam. You answer health questions by phone, and some families are approved the same day."}}]}]}</script>
+</head>
+<body>
+<header><div class="in">
+  <a class="brand" href="../"><img src="../Faithshieldlogo.png" alt="FaithShield Insurance logo" width="42" height="42">FaithShield Insurance</a>
+  <a class="btn" href="https://dreamteam-faithshield.netlify.app/quote.html?src=answer-how-much-life-insurance-to-pay-off-my-ho">Get My Free Quote</a>
+</div></header>
+<section class="hero">
+  <div class="kicker">Free calculator</div>
+  <h1>How Much Life Insurance Do I Need to Pay Off My House?</h1>
+  <p>Start with the house. Add the time your family needs to breathe. Here is a simple way to see your number.</p>
+  <a class="btn" href="https://dreamteam-faithshield.netlify.app/quote.html?src=answer-how-much-life-insurance-to-pay-off-my-ho">See My Options in 2 Minutes</a>
+</section>
+<main>
+  <div class="short"><b>Short answer:</b> start with your mortgage balance, add a cushion of several months of household bills, and match the length of the coverage to the years left on your loan. The calculator below gives you a starting number in 30 seconds.</div>
+  <div class="calc" data-ws-ignore>
+<h2 style="margin-top:0">Your starting number</h2>
+<label for="c_bal">Mortgage balance ($)</label><input id="c_bal" inputmode="numeric" placeholder="320,000">
+<label for="c_bills">Monthly household bills, not counting the mortgage ($)</label><input id="c_bills" inputmode="numeric" placeholder="3,500">
+<label for="c_months">Months of cushion for your family</label><select id="c_months"><option>6</option><option selected>12</option><option>18</option><option>24</option></select>
+<label for="c_have">Life insurance you already own ($)</label><input id="c_have" inputmode="numeric" placeholder="0">
+<label for="c_years">Years left on your mortgage</label><input id="c_years" inputmode="numeric" placeholder="27">
+<button class="btn" type="button" id="c_go" style="margin-top:14px;width:100%">Show my number</button>
+<div class="out" id="c_out"></div></div>
+<script>
+(function(){var n=function(id){return +String(document.getElementById(id).value||"").replace(/[^0-9.]/g,"")||0};
+document.getElementById("c_go").onclick=function(){var need=n("c_bal")+n("c_bills")*(+document.getElementById("c_months").value)+15000-n("c_have");need=Math.max(0,Math.ceil(need/25000)*25000);
+var y=n("c_years"),term=y<=10?10:y<=15?15:y<=20?20:y<=25?25:30,o=document.getElementById("c_out");o.style.display="block";
+o.innerHTML='Starting coverage amount<b>$'+need.toLocaleString()+'</b>'+(y?'Suggested length: a '+term+'-year term (matches the years left on your mortgage).<br>':'')+'Includes $15,000 for final costs. <a class="btn" style="margin-top:12px;display:inline-block" href="https://dreamteam-faithshield.netlify.app/quote.html?src=answer-how-much-life-insurance-to-pay-off-my-ho">See what this costs for my family</a>';};})();
+</script>
+  
+<h2>How the number works</h2>
+<ol>
+<li><b>Mortgage balance:</b> what it takes to own the house outright.</li>
+<li><b>A cushion for bills:</b> months of household costs while your family adjusts. Many families choose 6 to 12 months.</li>
+<li><b>Final costs:</b> a funeral in Florida can cost thousands of dollars.</li>
+<li><b>Minus coverage you already own:</b> a work policy counts only while you keep that job.</li>
+</ol>
+<h2>How long should the coverage last?</h2>
+<p>Match the term to the years left on your mortgage. A 30-year loan with 27 years left usually pairs with a 25 or 30-year term. Some families add coverage that lasts a lifetime, so something is always left for the children.</p>
+<p>This calculator gives a starting point, not a final answer. Your age, health and tobacco use decide the price, and a licensed broker can compare carriers to find the best fit for your family.</p>
+
+  <div class="cta">
+    <h2>See your real numbers</h2>
+    <p>A few quick questions about your home and your health. You see the coverage and the monthly cost for your family. No pressure, nothing to buy. 🔒 Your information stays with me and is never sold.</p>
+    <div class="row"><a class="btn" href="https://dreamteam-faithshield.netlify.app/quote.html?src=answer-how-much-life-insurance-to-pay-off-my-ho">Get My Free Quote</a><a class="btn dark" href="https://dreamteam-faithshield.netlify.app/quiz.html?src=answer-how-much-life-insurance-to-pay-off-my-ho">Take the 60-Second Quiz</a></div>
+  </div>
+  <h2>Questions families ask</h2>
+  <details><summary>Should the coverage equal my mortgage balance exactly?</summary><p>That is the minimum most families start with. A cushion for bills gives your family time to grieve instead of rushing to sell.</p></details><details><summary>Does the coverage go down as I pay the mortgage?</summary><p>Not with a policy you own. Many term plans stay level, so the money left after the house is paid goes to your family.</p></details><details><summary>Do I need a medical exam?</summary><p>Many plans have no medical exam. You answer health questions by phone, and some families are approved the same day.</p></details>
+  <h2>Meet your broker</h2>
+  <div class="about"><img src="../Rhinajasmynpicture.jpg" alt="Rhina Jasmyn, licensed insurance broker in Florida" loading="lazy">
+    <div><p><b>Rhina Jasmyn</b> is a licensed insurance broker in Florida (life, health and variable annuities) and the founder of FaithShield Insurance. After 15+ years in real estate helping families buy their homes, she now helps them keep them. English and Spanish.</p>
+    <p><a href="https://dreamteam-faithshield.netlify.app/credentials.html">See her license</a> · <a href="tel:+12394515994">Call or text (239) 451-5994</a></p></div></div>
+  
+  <h2>More answers</h2>
+  <div class="more"><a href="what-happens-to-my-mortgage-when-my-spouse-dies-florida.html">What Happens to My Mortgage When My Spouse Dies in Florida?</a><a href="does-pmi-pay-off-my-house-when-i-die.html">Does PMI Pay Off My House When I Die?</a><a href="does-life-insurance-through-work-cover-my-mortgage.html">Does My Life Insurance Through Work Cover My Mortgage?</a><a href="can-i-get-mortgage-protection-with-health-problems.html">Can I Get Mortgage Protection With Health Problems?</a></div>
+  <div class="verse">"Through [skillful and godly] wisdom a house [a life, a home, a family] is built, And by understanding it is established [on a sound and good foundation], And by knowledge its rooms are filled With all precious and pleasant riches." Proverbs 24:3-4 (AMP)<small>Scripture quotations taken from the Amplified® Bible (AMP), Copyright © 2015 by The Lockman Foundation. Used by permission. www.lockman.org</small></div>
+  <p class="src" style="margin-top:18px">This page is general education, not legal or tax advice. Coverage, prices and approval depend on each carrier.</p>
+</main>
+<footer>
+  FaithShield Insurance • Rhina Jasmyn, Licensed Insurance Broker in Florida • Naples, Florida<br>
+  <a href="../">Home</a><a href="./">Answers</a><a href="../privacy-policy.html">Privacy Policy</a><a href="../opt-in.html">Text Terms</a>
+</footer>
+<script src="../ws.js" data-endpoint="https://dreamteam-faithshield.netlify.app/.netlify/functions/site-signal" data-site="faithshield" defer></script>
+</body>
+</html>
